@@ -1,0 +1,1 @@
+jQuery加载动画插件shCircleLoader

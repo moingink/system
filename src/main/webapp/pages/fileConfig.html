@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="utf-8">
+		<title>文件解析配置</title>
+		<link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../vendor/bootstrap-table/src/bootstrap-table.css">
+		<script src="../vendor/jquery/jquery.min.js"></script>
+		<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script src="../vendor/bootstrap-table/src/bootstrap-table.js"></script>
+		<script src="js/bootTable.js"></script>
+	</head>
+
+	<body>
+
+		<form>
+			<div class="col-md-12">
+				<ul id="myTab" class="nav nav-tabs">
+					<li class="active">
+						<a href="#parseStrategy" data-toggle="tab">文件解析策略管理</a>
+					</li>
+					<li>
+						<a href="#dbfileConfig" data-toggle="tab">入库文件配置管理</a>
+					</li>
+					<!-- <li>
+						<a href="#fieldMapping" data-toggle="tab">文件字段对应关系管理</a>
+					</li> -->
+				</ul>
+			</div>
+		</br>
+			<div class="col-md-12">
+
+				<div class="tab-content">
+
+					<div class="tab-pane fade in active" id='parseStrategy'>
+						<iframe src="singleTableModify.jsp?pageCode=DBFILE_PARSE_STRATEGY&pageName=文件解析策略" scrolling="no" frameborder="0"  width="99%" height="1000"></iframe>
+					</div>
+					<div class="tab-pane fade" id='dbfileConfig'>
+						<iframe src="singleTableModify.jsp?pageCode=DBFILE_CONFIG&pageName=入库文件配置" scrolling="no" frameborder="0"  width="99%" height="1000"></iframe>
+					</div>
+					<!-- <div class="tab-pane fade" id='fieldMapping'>
+						<iframe src="../singleTableModify.jsp?pageCode=DBFILE_FIELD_MAPPING&pageName=文件字段对应关系" scrolling="no" frameborder="0"  width="99%" height="1000"></iframe>
+					</div> -->
+
+				</div>
+			</div>
+			
+		</form>
+
+	</body>
+	<script type="text/javascript">
+		$(function() {
+				//showdiv();
+				$('#myTab a[href="#metaDate"]').tab('show');
+			});
+			
+      function  showdiv(str){
+            $('#myTab a[href="#metaDate"]').tab('show');
+       } 
+  	</script>
+</html>

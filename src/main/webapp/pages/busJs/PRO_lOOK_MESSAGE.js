@@ -1,0 +1,10 @@
+/**
+ * @author Administrator
+ */
+buttonJson =[	
+             {name:'查询',fun:'queryTable(this)',buttonToken:'query'},
+            /* {name:'新增',fun:'tog(this)',buttonToken:'insertReleasedKHXM'},*/
+             {name:'看板更新',fun:'updateRow(this)',buttonToken:'update'},
+             {name:'删除',fun:'delRows(this)',buttonToken:'delete'}
+    
+			];

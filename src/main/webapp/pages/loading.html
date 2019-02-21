@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html lang="zh-cn">
+
+	<head>
+
+		<meta charset="UTF-8" />
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+		<title></title>
+
+		<meta name="description" content="页面加载特效（Page Loading Effects）: " />
+
+		
+
+		<meta name="author" content="Codrops" />
+
+		<link rel="shortcut icon" href="../LoadIng/favicon.ico">
+
+		<link rel="stylesheet" type="text/css" href="LoadIng/css/normalize.css" />
+
+		<link rel="stylesheet" type="text/css" href="LoadIng/css/demo.css" />
+
+		<link rel="stylesheet" type="text/css" href="LoadIng/css/component.css" />
+
+		<script src="LoadIng/js/snap.svg-min.js"></script>
+
+		<!--[if IE]>
+
+  		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+
+		<![endif]-->
+
+		 
+        <script type="text/javascript" src="../pro_all_jses/libs/jquery.min.js"></script>
+		<!--<script src="http://www.jq22.com/jquery/1.7.2/jquery.min.js"></script>-->
+
+		 
+
+	</head>
+
+	<body>
+    
+	 
+		<div id="pagewrap" class="pagewrap">
+			<!--
+			<div class="container show" id="page-1">		
+                      <a class="pageload-link" href="#page-2"><button id="btn">点击预览效果</button></a>
+				<div class="footer-banner" style="width:728px; margin:30px auto"></div>
+			</div><!-- /container -->
+
+
+
+			<!-- The new page dummy; this would be dynamically loaded content -->
+			<div id="loader" class="pageload-overlay" data-opening="M -18 -26.90625 L -18 86.90625 L 98 86.90625 L 98 -26.90625 L -18 -26.90625 Z M 40 29.96875 C 40.01804 29.96875 40.03125 29.98196 40.03125 30 C 40.03125 30.01804 40.01804 30.03125 40 30.03125 C 39.98196 30.03125 39.96875 30.01804 39.96875 30 C 39.96875 29.98196 39.98196 29.96875 40 29.96875 Z">
+
+				<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 80 60" preserveAspectRatio="xMidYMid slice">
+
+					<path d="M -18 -26.90625 L -18 86.90625 L 98 86.90625 L 98 -26.90625 L -18 -26.90625 Z M 40 -25.6875 C 70.750092 -25.6875 95.6875 -0.7500919 95.6875 30 C 95.6875 60.750092 70.750092 85.6875 40 85.6875 C 9.2499078 85.6875 -15.6875 60.750092 -15.6875 30 C -15.6875 -0.7500919 9.2499078 -25.6875 40 -25.6875 Z"/>
+
+				</svg>
+
+			</div><!-- /pageload-overlay -->
+
+			
+
+		</div><!-- /pagewrap -->
+
+		<script src="LoadIng/js/classie.js"></script>
+
+		<script src="LoadIng/js/svgLoader.js"></script>
+
+		<script>
+		  
+		   loader = new SVGLoader( document.getElementById( 'loader' ), { speedIn : 300, easingIn : mina.easeinout } );
+		  
+		   $(function(){
+		      $(document).ready(function(){
+			  loader.show();
+			  });
+		   
+		   
+		   });
+		    
+			function aaa(){	
+               $("#page-1").hide();
+			   $("#btn").trigger("click");	
+			   
+			   
+			}
+		
+
+			(function (){
+
+				
+                    var pageWrap = document.getElementById( 'pagewrap' ),
+
+					pages = [].slice.call( pageWrap.querySelectorAll( 'div.container' ) ),
+
+					currentPage = 0,
+
+					triggerLoading = [].slice.call( pageWrap.querySelectorAll( 'a.pageload-link' ) ),
+
+					loader = new SVGLoader( document.getElementById( 'loader' ), { speedIn : 300, easingIn : mina.easeinout } );
+
+
+				function init() {
+
+					triggerLoading.forEach( function( trigger ) {
+
+						trigger.addEventListener( 'click', function( ev ) {
+ 
+                          //ev.preventDefault();
+
+							loader.show();
+
+							// after some time hide loader
+
+							setTimeout( function() {
+
+								loader.hide();
+
+
+
+								//classie.removeClass( pages[ currentPage ], 'show' );
+
+								// update..
+
+								//currentPage = currentPage ? 0 : 1;
+
+								//classie.addClass( pages[ currentPage ], 'show' );
+
+                               parent.loadmessage1();
+
+							}, 4000 );							
+
+						    
+						} );
+
+					} );	
+
+				}
+
+
+
+				init();
+
+			})();
+
+		</script>
+
+	</body>
+
+</html>

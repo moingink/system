@@ -1,0 +1,312 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+<link rel="stylesheet" type="text/css" href="../../easyui/demo/demo.css">
+<link rel="stylesheet" type="text/css" href="../../easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../../easyui/themes/icon.css">
+<script type="text/javascript" src="../../easyui/jquery.min.js"></script>
+<script type="text/javascript" src="../../easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../easyui/locale/easyui-lang-zh_CN.js"></script>
+
+<script type="text/javascript">
+
+ var save_update="";
+
+ function remove_hidden(){
+ 
+     $("#save2").attr("hidden",true);
+	 $("#save1").removeAttr("hidden");
+	 $("#message").removeAttr("hidden");
+	 
+	       $("#year_").val("");
+	 
+	       $("#car_").val("");
+	  
+	       $("#pc").val("");
+	 
+	       $("#cl").val("");
+	
+	       $("#yc_").val("");	 
+	}
+	
+	function save_car_message(){
+	   
+	   var car_id="<%=request.getParameter("car_id") %>";
+	 
+	   var year=$("#year_").val();
+	 
+	   var car_=$("#car_").val();
+	  
+	   var pc=$("#pc").val();
+	 
+	   var cl=$("#cl").val();
+	
+	   var yc_=$("#yc_").val();
+	 
+	   var cus_id="<%=request.getParameter("ParentPKValue")%>";
+	   var car_map=[car_id,year,car_,pc,cl,yc_,cus_id];
+	   
+	  // alert(car_map);
+
+	   $.ajax({
+			type: "POST",
+			url:"/system/cuma?cmd=find_car_message&id=<%=request.getParameter("ParentPKValue")%>&is_no=2&page=1&rows=10&car_map="+car_map,		
+			dataType: "json",
+			async: false,
+			cache: false,
+			contentType: false,
+			processData: false,
+			success: function(data) {	
+			
+			$(function(){			
+			alert("保存成功");
+		    $("#message").attr("hidden",true);
+
+		    //location.reload(true);   
+		     $("#tt_message").datagrid("loadData",data);
+		    
+		     $("#pc_num").val(data["all"][0]["ALL_NUMBER"]);
+			 $("#cl_num").val(data["all"][0]["ALL_CAR_NUM"]);
+			 $("#yc_num").val(data["all"][0]["ALL_WILL_YEAR_PRICE"]);
+		     
+			});
+			}, error: function(data) {
+				var da=JSON.stringify(data);
+				//alert("查询失败，请联系管理员！" + "\t" + "错误代码：" + da);
+			    alert("保存失败");
+			}
+			}); 
+		
+	}	
+     
+ 
+
+ function update_messages(){
+	  	var row = $('#tt_message').datagrid('getSelections');
+	  
+	   
+	  	
+	  	if(row==""){
+	  	 alert("请选中一条数据");
+	  	   
+	  	   return ;
+	  	}else{
+	  	  if(row.length>1){
+	  	   alert("请选中一条数据");
+	  	   
+	  	   return ;
+	  	  }
+	  	  else{
+	  	  
+	  	  if(row[0]["YEAR"]=="请填写"){
+	       alert("请先添加数据");
+	       
+	       return ;
+	      }
+	  	    
+	  	   
+	  	   $("#save1").attr("hidden",true);
+	  	   $("#save2").removeAttr("hidden");
+	  	  
+	       $("#message").removeAttr("hidden");	
+	      
+	       $("#year_").val(row[0]["YEAR"]);
+	 
+	       $("#car_").val(row[0]["CAR_CLASSIFY"]);
+	  
+	       $("#pc").val(row[0]["CAR_NUM_MORE"]);
+	 
+	       $("#cl").val(row[0]["CAR_NUM"]);
+	
+	       $("#yc_").val(row[0]["WILL_YEAR_PRICE"]);
+	       
+	        var car_id=row[0]["ID"];
+	 
+	        var year=$("#year_").val();
+	 
+	        var car_=$("#car_").val();
+	  
+	        var pc=$("#pc").val();
+	 
+	        var cl=$("#cl").val();
+	
+	        var yc_=$("#yc_").val();
+	 
+	        var cus_id="<%=request.getParameter("ParentPKValue")%>";
+	        
+	        save_update=[car_id,year,car_,pc,cl,yc_,cus_id];
+	      }
+	 
+	 
+	  
+	
+      }
+	  	
+	}
+	
+	
+	 function save_car_message1(){
+	   
+	        var year=$("#year_").val();
+	 
+	        var car_=$("#car_").val();
+	  
+	        var pc=$("#pc").val();
+	 
+	        var cl=$("#cl").val();
+	
+	        var yc_=$("#yc_").val();
+	 
+        save_update[1]=year;
+        save_update[2]=car_;
+        save_update[3]=pc;
+        save_update[4]=cl;
+        save_update[5]=yc_;
+        
+        $.ajax({
+			type: "POST",
+			url:"/system/cuma?cmd=find_car_tain_message&id=<%=request.getParameter("ParentPKValue")%>&is_no=2&page=1&rows=10&car_map="+save_update,		
+			dataType: "json",
+			async: false,
+			cache: false,
+			contentType: false,
+			processData: false,
+			success: function(data) {	
+			
+			$(function(){			
+			alert("修改成功");
+		    $("#message").attr("hidden",true);
+
+		    //location.reload(true);   
+		     $("#tt_message").datagrid("loadData",data);
+		    
+		     $("#pc_num").val(data["all"][0]["ALL_NUMBER"]);
+			 $("#cl_num").val(data["all"][0]["ALL_CAR_NUM"]);
+			 $("#yc_num").val(data["all"][0]["ALL_WILL_YEAR_PRICE"]);
+		     save_update="";
+			});
+			}, error: function(data) {
+				var da=JSON.stringify(data);
+				//alert("查询失败，请联系管理员！" + "\t" + "错误代码：" + da);
+			    alert("修改失败");
+			}
+			}); 
+    }
+	
+	function delete_messages(){
+	  	var row = $('#tt_message').datagrid('getSelections');
+	
+	  	  if(row==""){
+	  	    alert("请选中一条数据");
+	  	    return ;
+	  	  }
+	  	   else{
+	  	   var id=Array();
+	  	   
+	  	   var car_id="<%=request.getParameter("ParentPKValue")%>"
+	  	   
+	  	   for(var i=0;i<row.length;i++){
+	  	      id[i]=row[i]["ID"];
+	  	   }
+	  	   
+	  
+	  	    $.ajax({
+			type: "POST",
+			url:"/system/cuma?cmd=delete_box_tain_message&id="+id+"&cus_id="+car_id+"&is_no=0",		
+			dataType: "json",
+			async: false,
+			cache: false,
+			contentType: false,
+			processData: false,
+			success: function(data) {	
+			
+			$(function(){			
+			alert("删除成功");
+		    $("#tt_message").datagrid("loadData",data);
+		    
+		    
+		     $("#pc_num").val(data["all"][0]["ALL_NUMBER"]);
+			 $("#cl_num").val(data["all"][0]["ALL_CAR_NUM"]);
+			 $("#yc_num").val(data["all"][0]["ALL_WILL_YEAR_PRICE"]);
+			});
+			}, error: function(data) {
+				var da=JSON.stringify(data);
+				//alert("查询失败，请联系管理员！" + "\t" + "错误代码：" + da);
+			    alert("删除失败");
+			}
+			}); 
+	  	
+	  	    
+	  	    	 }
+	}
+
+    $.ajax({
+			type: "POST",
+			url:"/system/cuma?cmd=find_car_tain_message&id=<%=request.getParameter("ParentPKValue")%>&is_no=0&page=1&rows=10",		
+			dataType: "json",
+			async: false,
+			cache: false,
+			contentType: false,
+			processData: false,
+			success: function(data) {			
+		     //alert(JSON.stringify(data));	
+		     $(function(){
+		     $("#pc_num").attr("disabled",true);
+			 $("#cl_num").attr("disabled",true);
+			 $("#yc_num").attr("disabled",true);
+		     
+		     $("#pc_num").val(data["all"][0]["ALL_NUMBER"]);
+			 $("#cl_num").val(data["all"][0]["ALL_CAR_NUM"]);
+			 $("#yc_num").val(data["all"][0]["ALL_WILL_YEAR_PRICE"]);
+			 
+		     });		 
+			 		
+			}, error: function(data) {
+				var da=JSON.stringify(data);
+				alert("查询失败11111，请联系管理员！" + "\t" + "错误代码：" + da);
+			}
+			});  
+
+</script>  
+
+</head>
+<body>	
+    
+   <!--  <button id="update_message"  onclick="update_messages()">修改</button>  <button id="delete_mess" onclick="delete_messages()">删除</button> --> 
+        <br/>
+                        
+                         <div id="message" hidden="true">
+                         <table>
+                         <tr><td hidden="true"><input id="car_id" value=""></td>     <td>年份:<select id="year_">
+                                                                                             <option selected="selected" value="">请选择</option>
+                                                                                             <option  value="2018">2018</option>   
+                                                                                             <option  value="2019">2019</option>   
+                                                                                             <option  value="2020">2020</option>                        
+                                                                                             </select>
+                         </td><td>车系:<input id="car_" /></td><td>排产量:<input id="pc" /></td></tr>
+                         <tr><td>车联网配质量:<input id="cl" /></td><td>预测年收入:<input id="yc_"/></td><td><button id="save1" onclick="save_car_message();">完成</button> <button id="save2" hidden="true" onclick="save_car_message1();">完成</button></td></tr>
+                         </table>                       
+                         </div>
+
+	<table id="tt_message" class="easyui-datagrid" style="width: 100%"
+			data-options="singleSelect:false,rownumbers:true,fitColumns:true,pagination:true,collapsible:true,url:'/system/cuma?cmd=find_car_tain_message&id=<%=request.getParameter("ParentPKValue")%>&is_no=0',method:'post'">
+		<thead>
+			<tr>
+				<th data-options="field:'ID',width:80,align:'center'" hidden="true">主键</th>
+				<th data-options="field:'YEAR',width:100,align:'center',halign:'center'">年份</th>
+				<th data-options="field:'CAR_CLASSIFY',width:100,align:'center',halign:'center'">车系</th>
+				<th data-options="field:'CAR_NUM_MORE',width:100,align:'center',halign:'center'">排产量(万辆)</th>
+				<th data-options="field:'CAR_NUM',width:150,align:'center',halign:'center'">车联网配置量(万辆)</th>
+				<th data-options="field:'WILL_YEAR_PRICE',width:200,align:'center',halign:'center'">预测年收入(万元)</th>
+			</tr>
+		</thead>
+	</table>
+	<h3>合计:</h3>
+	排产量(万两):<input type="text" id="pc_num"  value=""/>&nbsp&nbsp 车联网配置量(万辆):<input id="cl_num" value="" />&nbsp&nbsp 预测年收入(万元):<input id="yc_num" value=""/>
+</body>
+</html>

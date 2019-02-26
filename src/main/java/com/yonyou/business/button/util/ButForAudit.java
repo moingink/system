@@ -90,7 +90,7 @@ public class ButForAudit extends ButtonAbs   {
 		if(tenant_code!=null&&tenant_code.length()>0){
 			dataSourceCode=dataSourceCode+"@"+tenant_code;
 		}
-		this.handleTask(IBusFlowOperationType.CLOSE_HANDLE_NEED,dataSourceCode,json, request);
+		//this.handleTask(IBusFlowOperationType.CLOSE_HANDLE_NEED,dataSourceCode,json, request);
 		this.appendRestBusFlow(dataSourceCode, json, request);
 	}
 	
@@ -128,11 +128,11 @@ public class ButForAudit extends ButtonAbs   {
 					json.put("BUS_ID", json.get("ID"));
 					switch(keyWord){
 					case "0":
-						this.handleTask(IBusFlowOperationType.CLOSE_HANDLE_NEED,"PROJECT_BUILD_MODIFY_SAVE_KH","",json, request);
+						//this.handleTask(IBusFlowOperationType.CLOSE_HANDLE_NEED,"PROJECT_BUILD_MODIFY_SAVE_KH","",json, request);
 						break;
 					
 					case "1":
-						this.handleTask(IBusFlowOperationType.CLOSE_HANDLE_NEED,"PROJECT_BUILD_MODIFY_SAVE_NL","",json, request);
+						//this.handleTask(IBusFlowOperationType.CLOSE_HANDLE_NEED,"PROJECT_BUILD_MODIFY_SAVE_NL","",json, request);
 						break;
 					}
 				}

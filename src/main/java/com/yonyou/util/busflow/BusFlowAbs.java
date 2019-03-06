@@ -115,8 +115,8 @@ public abstract class BusFlowAbs {
 					return restClinet.startTask(json);
 				case IBusFlowOperationType.RUN_TASK:
 					return restClinet.runTask(node_code,json);
-				case IBusFlowOperationType.CLOSE_HANDLE_NEED:
-					return restClinet.closeHandleNeed(json);
+				//case IBusFlowOperationType.CLOSE_HANDLE_NEED:
+					//return restClinet.closeHandleNeed(json);
 			}
 			return null;
 		}

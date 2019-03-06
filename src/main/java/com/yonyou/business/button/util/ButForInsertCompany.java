@@ -34,7 +34,7 @@ public class ButForInsertCompany extends ButtonAbs{
 			json.put("SUB_TIME",new SimpleDateFormat().format(sqlDate1));
 			json.put("CD_CHECK_STATUS","0");
 			//此处校验资金编码是否可用
-			String tmCode = json.get("TM_CODE").toString();
+			String tmCode = json.get("OU").toString();
 			boolean status = validatePartyRelation(tabName,tmCode);
 			if(!status){
 				jsonMessage = "{\"message\":\"保存失败，资金编码已被使用！\"}";

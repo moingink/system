@@ -10,7 +10,6 @@ import com.yonyou.iuap.persistence.vo.pub.BusinessException;
 import com.yonyou.util.SpringContextUtil;
 import com.yonyou.util.jdbc.IBaseDao;
 import com.yonyou.util.notity.group.UserGroupFactory;
-import com.yonyou.util.sql.SqlTableUtil;
 import com.yonyou.util.workflow.exect.WorkFlowException;
 import com.yonyou.util.workflow.http.client.util.AuditUserUtil;
 import com.yonyou.util.workflow.type.PromptMessageEnum;
@@ -25,7 +24,6 @@ public class BusAuditUser implements IWorkOwer{
 		return (IBaseDao)SpringContextUtil.getBean("dcmsDAO");
 	}
 	
-	@Override
 	public Map<String, Object> findAuditUsers(String ower_group, String user,
 			String company,String projectBusId, String productIds) {
 		// TODO 自动生成的方法存根
@@ -710,5 +708,11 @@ public class BusAuditUser implements IWorkOwer{
 				
 				}
 				return userMap;
+			}
+
+			@Override
+			public Map<String, Object> findAuditUsers(String arg0, String arg1, String arg2) {
+				// TODO Auto-generated method stub
+				return null;
 			}
 }

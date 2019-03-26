@@ -6,6 +6,7 @@ buttonJson =[
               {name:'导入',fun:'upload(this)',buttonToken:'upload'},
               {name:'洽谈业务',fun:'jump(this)',buttonToken:'third'}
               ];
+//导入初始化 必须 否则页面功能有问题
 	$(function(){
 		var fileInput=new FileInput();
 		fileInput.init();

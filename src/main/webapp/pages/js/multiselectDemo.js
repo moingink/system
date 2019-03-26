@@ -51,17 +51,11 @@ function joinOptions (jsonMessage) {
 		}
 	}
 	var maxValueLength = jsonArray[index]['FIELD_NAME'].length;
-	
-	for(var i = 0 ; i < jsonLen ; i++){
-		var fieldCodeStr = jsonArray[i]['FIELD_CODE'] ; 
-		var fieldNameStr = jsonArray[i]['FIELD_NAME'] ; 
-		optionHtml += "<option value='"+buildFieldId(fieldCodeStr , joinTables)+"'>"+
-			buildFieldCode(fieldNameStr, joinTables , maxValueLength)+
-			//buildFieldCode(fieldCodeStr, joinTables , maxValueLength) +
-			buildFieldId(fieldCodeStr , joinTables) +　"【"+
-			jsonArray[i]['DATA_NAME']+"："+
-			jsonArray[i]['DATA_CODE']+"】"+
-			"</option>";
+	for(var i = 0;i < jsonLen ; i++){
+		var fieldCodeStr = jsonArray[i]['FIELD_CODE'];
+		var fieldNameStr=jsonArray[i]['FIELD_NAME'];
+		optionHtml+="<option value='"+buildFieldId(fieldCodeStr,joinTables)+"'>"+buildFieldCode(fieldNameStr,joinTables,maxValueLength)+buildFieldId(fieldCodeStr,joinTables)+"【"+
+		jsonArray[i]['DATA_NAME']+"："+jsonArray[i]['DATA_CODE']+"】"+"</option>";
 	}
 	return optionHtml ;
 }
@@ -209,8 +203,7 @@ function joinColumnOptions (jsonMessage) {
 		var fieldNameStr = jsonArray[i]['FIELD_NAME'] ; 
 		optionHtml += "<option value='"+fieldCodeStr+"'>"+
 		fieldCodeStr+" → "+
-		fieldNameStr +　
-			"</option>";
+		fieldNameStr +"</option>";
 	}
 	return optionHtml ;
 }

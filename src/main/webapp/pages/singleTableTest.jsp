@@ -75,7 +75,7 @@
 		
 	</body>
 	<jsp:include page="../../../include/public.jsp"></jsp:include>
-	<jsp:include page="../../buttonjs.jsp"></jsp:include>
+	<jsp:include page="../../pages/buttonjs.jsp"></jsp:include>
 	<link rel="stylesheet" type="text/css" href="<%= ThemePath.findPath(request, ThemePath.SUB_SYSTEM_CSS)%>">
 	<script type="text/javascript">
 		$(function() {

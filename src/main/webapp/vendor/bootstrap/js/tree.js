@@ -44,8 +44,8 @@ $(function() {
 			{
 				text : '<a href="#" onclick="javascript:onclickmenu(\'partyManage.html\')">组织管理</a>',
 				href : '#config',
-				tags : [ '0' ],
-				nodes :　[
+				tags :['0'],
+				nodes:[
 				         {
 				        	 text : '<a href="#" onclick="javascript:onclickmenu(\'singleTableModify.jsp?pageCode=TM_COMPANY&pageName=公司管理\')">公司管理</a>',
 				        	 href:'#functionNode',
@@ -61,8 +61,8 @@ $(function() {
 			{
 				text : '权限管理',
 				href : '#property',
-				tags :　[ '4' ],
-				nodes :　[
+				tags :[ '4' ],
+				nodes:[
 				         /*{
 				        	 text : '<a href="#" onclick="javascript:onclickmenu(\'singleTableModify.jsp?pageCode=RM_FUNCTION_NODE&menuCode=001&pageName=菜单管理\')">菜单管理</a>',
 				        	 href:'#functionNode',
@@ -94,7 +94,7 @@ $(function() {
 				text : 'Excel导入',
 				href : '#',
 				tags : [ '0' ],
-				nodes :　[
+				nodes:[
 				         {
 							text : '<a href="#" onclick="javascript:onclickmenu(\'singleTableModify.jsp?pageCode=EXCEL_IMPORT_CONFIGURE&pageName=Excel导入配置\')">Excel导入配置</a>',
 							href : '#',
@@ -150,9 +150,9 @@ $(function() {
 			},
 			{
 				text : '个人工作台',
-				href : '#',
-				tags :　[ '4' ],
-				nodes :　[
+				href :'#',
+				tags:['4'],
+				nodes:[
 				         {
 				        	 text : '<a href="#" onclick="javascript:onclickmenu(\'singleTableModify.jsp?pageCode=RM_THEME_INFO&pageName=主题管理\')">主题管理</a>',
 				        	 href:'#theme',

@@ -3,22 +3,22 @@ var FileInput = function () {
 	//初始化fileinput控件
 	oFile.init = function() {
 	    $('#fileUpload').fileinput({
-			uploadUrl: context + '/base?cmd=uploadFile', 
-	    	language: 'zh', 
+			uploadUrl: context + '/base?cmd=uploadFile',
+	    	language: 'zh',
 			enctype: 'multipart/form-data',
 			uploadExtraData: {
 				dataSourceCode: dataSourceCode,
 				token: token
 			},
-			showCancel: false,//是否显示文件上传取消按钮
-			showClose: false,//是否在预览中显示关闭图标
-			showUploadedThumbs: false,//是否在预览窗口中持续显示上传的文件缩略图,直到按下删除/清除按钮
-		　　	maxFileCount: 0,//同时上传的最大文件个数
-			autoReplace: true,//是否在maxFileCount达到限制后自动替换预览中的文件并选择一组新文件
-			allowedFileExtensions : ['xls','xlsx'],//允许上传的文件扩展名
-			previewFileIcon: "<i class=\"glyphicon glyphicon-file\"></i>",//当检测到用于预览的不可读文件类型时，每个预览文件缩略图中显示的图标
-			minFileSize: 0,//以KB为单位上传的最小文件大小
-			maxFileSize: 0,//以KB为单位上传的最大文件大小,如果为0表示不限制文件大小
+			showCancel:false,
+			showClose:false,
+			showUploadedThumbs:false,
+			maxFileCount:0,
+			autoReplace: true,
+			allowedFileExtensions : ['xls','xlsx'],
+			previewFileIcon: "<i class=\"glyphicon glyphicon-file\"></i>",
+			minFileSize: 0,
+			maxFileSize: 0,
 			fileActionSettings:{
 				showRemove:false, //是否在缩略图中显示删除按钮
 		    	showUpload :false,//是否在缩略图中显示上传按钮

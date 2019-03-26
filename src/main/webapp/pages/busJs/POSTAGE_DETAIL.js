@@ -20,7 +20,7 @@ function bulidMaintainPageSetUp($detailPage, detailPageId){
 		var singleArray = singleFlowArray.concat(singlePhoneticsArray).concat(singleMessageArray).concat(singleUseDateArray);
 		modifyParentClass($detailPage, singleArray, 'col-md-1-5 col-xs-1-5 col-sm-1-5');
 	}else{
-		var totalFlowArray  = new Array('FLOW','FLOW_UNIT','STANDARD_PRICE',);
+		var totalFlowArray  = new Array('FLOW','FLOW_UNIT','STANDARD_PRICE');
 		var totalPhoneticsArray = new Array('PHONETICS','PHONETICS_STANDARD_PRICE');
 		var totalMessageArray = new Array('MESSAGE','MESSAGE_STANDARD_PRICE');
 		var totalUseDateArray = new Array('OPEN_USE_DATE');

@@ -89,7 +89,9 @@ public class Import_Excel_SuperTools {
 	 */
 	public final static String[] EC_PURORDER_H2_HEAD={"需求审批编号","项目编号","项目名称","合同编号","合同名称","采购单据号","采购项目名称","需求部门","项目经理","采购经理","预算金额（万元）","采购内容","物资类别","采购方式","数量","中标金额（不含税）","中标金额（含税）","中标供应商","联系人","电话","邮箱","成本节约金额（万元）","价税合计"};
 	public final static String[] EC_PURORDER_H2_BODY={"REQUIREMENT_NUMBER","ITEM_NO","PROJECT_NAME","CONTRACT_NO","NAME_CONTRACT","PURCHASE_NUMBER","PROCUREMENT_NAME","DEPARTMENT_DEMAND","PROJECT_MANAGER","PURCHASING_MANAGERS","BUDGET_AMOUNT","PURCHASING_CONTENT","SUPPLIES_CATEGORY","PURCHASE_WAY","NUMBER_OF","WINNING_AMOUNT","WINNING_TAX_INCLUDED","WINNING_SUPPLIER","THE_CONTACT","THE_PHONE","EMAIL_OF","COST_SAVING_AMOUNT","LEVIED_TOTAL"};
-	
+	//测试demo
+	public final static String[] TEST_DEMO_HEAD={"用户名","备注","注册日期"};
+	public final static String[] TEST_DEMO_BODY={"USER_NAME","REMARK","REGIST_DATE"};
 	
 	/**
 	 * 导入Excel

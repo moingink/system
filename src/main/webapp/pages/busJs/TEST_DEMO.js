@@ -3,12 +3,15 @@ buttonJson =[
               {name:'新增',fun:'tog(this)',buttonToken:'add'},
               {name:'修改',fun:'updateRow(this)',buttonToken:'update'},           
               {name:'删除',fun:'deleteRowCheck(this)',buttonToken:'delete'},
+              {name:'导入',fun:'upload(this)',buttonToken:'upload'},
               {name:'洽谈业务',fun:'jump(this)',buttonToken:'third'}
               ];
-
-
+//导入初始化 必须 否则页面功能有问题
+	$(function(){
+		var fileInput=new FileInput();
+		fileInput.init();
+	});
 //重写参照
-
 function ref_write_json(rejsonArray){
 	//参照 选择json 做单独的处理 
 	console.log(JSON.stringify(rejsonArray));
@@ -48,4 +51,9 @@ function ref_end(){
 }
 //主字表模板
 
+//导入
+function upload(){
+	console.log("导入");
+	$('#uploadModal').modal('show');
+}
 

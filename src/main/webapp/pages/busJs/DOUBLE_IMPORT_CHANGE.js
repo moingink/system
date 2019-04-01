@@ -116,7 +116,34 @@ function savaByQuery(t,_dataSourceCode,$div){
 		$('#tj').removeAttr('disabled');
 	}
 }
-
+function transToServer(url,jsonData,childJsonData,childDataSourceCode,deleteIds){
+	var message;
+	$.ajax({
+    	async: false,
+    	type: "post",
+		url: url,
+		dataType: "json",
+		//防止深度序列化
+    	traditional: true,
+		data:{
+			"jsonData":jsonData,
+			"childJsonData":childJsonData,
+			"childDataSourceCode":childDataSourceCode,
+			"deleteIds":deleteIds
+		},
+		success: function(data){
+			message = data['message'];
+		},
+		error:function(XMLHttpRequest, textStatus, errorThrown){
+			//登录超时
+		    if(XMLHttpRequest.getResponseHeader("TIMEOUTURL")!=null){
+		    	window.top.location.href = XMLHttpRequest.getResponseHeader("TIMEOUTURL");
+		    }
+			message ="请求失败";
+		}
+	});
+    return message;
+};
 //重写返回
 function back(t){
 	var cache_dataSourceCode =$("#cache_dataSourceCode").val();
@@ -198,6 +225,7 @@ function singlePubRestAuditByTenant(t){
 
 function transToServer(url,jsonData,childJsonData,childDataSourceCode,deleteIds){
 	var message;
+	console.log(childDataSourceCode);
 	$.ajax({
     	type: "post",
     	async: false,

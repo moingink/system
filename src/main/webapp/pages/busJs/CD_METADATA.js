@@ -5,9 +5,16 @@ buttonJson =[
              {name:'删除',fun:'delRows(this)',buttonToken:'deleteWithCache'},
              {name:'元数据字段',fun:'view(this)',buttonToken:'checkMeta'},
              {name:'存储过程',fun:'tableProc(this)',buttonToken:'procedure'},
+             {name:'建表',fun:'creaeTable(this)',buttonToken:'createTable'},
+             {name:'导入',fun:'upload(this)',buttonToken:'upload'},
+             {name:'导出',fun:'upload(this)',buttonToken:'upload'}
 			];
 
-
+//导入初始化 必须 否则页面功能有问题
+$(function(){
+	var fileInput=new FileInput();
+	fileInput.init();
+});
 
 function view(){
 	
@@ -49,4 +56,10 @@ function ref_write_json(rejsonArray){
 	}else{
 		return true;
 	}
+}
+
+//导入
+function upload(){
+	console.log("导入");
+	$('#uploadModal').modal('show');
 }

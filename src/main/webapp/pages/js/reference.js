@@ -37,7 +37,12 @@
 		
 		function reference_remote(u, mapping, isRadio) {
 			write_html();
-			url = context+'/pages/busPage/referencePage.jsp?dataSourceCode=' + u + '&isRadio=' + isRadio + '&t=' + Math.random(1000)+'&refColumn='+globalRef_col;
+			//获取选择的元数据 id
+			if(u=="CD_METADATA_DETAIL"){
+				url = context+'/pages/busPage/referencePage.jsp?dataSourceCode=' + u + '&isRadio=' + isRadio + '&METADATA_ID='+$('#LINK_TABLE_ID').val()+'&t=' + Math.random(1000)+'&refColumn='+globalRef_col;
+			}else{
+				url = context+'/pages/busPage/referencePage.jsp?dataSourceCode=' + u + '&isRadio=' + isRadio + '&t=' + Math.random(1000)+'&refColumn='+globalRef_col;
+			}
 			$('#ReferenceDataSourceCode').val(u);
 			$('#ReferenceIsRadio').val(isRadio);
 			$('#ReferenceMapping').val(mapping);

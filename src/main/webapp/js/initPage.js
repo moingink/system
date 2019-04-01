@@ -53,6 +53,7 @@ function bulidPage(isBulidSelect,isBulidButton,isBulidListPage,isBulidMaintainPa
 			bulidMaintainPage($inspage,dataSourceCode,'','add');
 			validJson=transToServer(findUrlParam('base','queryValids','&dataSourceCode='+dataSourceCode),'');
 		}
+		//console.info("validJson=== "+JSON.stringify(validJson));
 		$inspage.bootstrapValidator(validJson);
 		$('.form_date').datetimepicker({
     		minView: 'month',         //设置时间选择为年月日 去掉时分秒选择
@@ -69,7 +70,7 @@ function bulidPage(isBulidSelect,isBulidButton,isBulidListPage,isBulidMaintainPa
 		
 		$inspage.find('.form_date').find("input").each(function(){
 			var column =$(this).attr("id");
-			
+			console.info("column===  "+column);
 			$(this).change(function() {
 				$("#insPage").data('bootstrapValidator').updateStatus(column, 
 			             'NOT_VALIDATED',null).validateField(column);
@@ -129,6 +130,7 @@ function bulidListPageForQusUrl($t,_dataSourceCode,_listPageParam,_qusurl){
 	if(_qusurl!=null){
 		_qusurl= _qusurl + findPageParamByDataSourceCode(_dataSourceCode)+_listPageParam;
 	}
+	//console.info($t+"2==="+colurl+"3===" + findPageParamByDataSourceCode(_dataSourceCode)+"4==="+_qusurl);
 	oTable.initCols($t, colurl + findPageParamByDataSourceCode(_dataSourceCode),_qusurl);
 }
 

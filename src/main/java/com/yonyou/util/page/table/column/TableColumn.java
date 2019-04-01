@@ -45,6 +45,7 @@ public abstract class TableColumn {
 		publicArtMap.put(TableColumnUtil.VALIGN, ValignEnum.MIDDLE.getVal());
 		publicArtMap.put(TableColumnUtil.SORTABLE, IsShowEnum.TRUE.getVal());
 		publicArtMap.put(TableColumnUtil.VISIBLE, IsShowEnum.TRUE.getVal());
+		//publicArtMap.put(TableColumnUtil.EDITABLE, IsShowEnum.TRUE.getVal());
 	}
 	/**
 	 * 获取列的json信息

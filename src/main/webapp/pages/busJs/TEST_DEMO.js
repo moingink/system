@@ -1,7 +1,7 @@
 buttonJson =[
               {name:'查询',fun:'queryTable(this)',buttonToken:'query'},
               {name:'新增',fun:'setUpAdd(this),tog(this)',buttonToken:'addTestDemo'},
-              {name:'修改',fun:'setUpUpdate(this),updateRow(this)',buttonToken:'aupdateTestDemo'},
+              {name:'修改',fun:'setUpUpdate(this),updateRow(this)',buttonToken:'updateTestDemo'},
               {name:'删除',fun:'deleteRowCheck(this)',buttonToken:'delete'},
               {name:'导入',fun:'upload(this)',buttonToken:'upload'},
               {name:'跳转其他页面',fun:'jump(this)',buttonToken:'third'}

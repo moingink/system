@@ -31,6 +31,7 @@ public class MgrUser implements Serializable {
     private Date registerDate;
     protected Long id;
     private long loginTs;
+    
 
     @Id
     public Long getId() {

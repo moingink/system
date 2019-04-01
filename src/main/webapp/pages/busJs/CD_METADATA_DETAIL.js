@@ -36,10 +36,17 @@ function setRefField(t){
 	var metaDataId = $("#METADATA_ID").val();
 	if(metaDataId ==''){
 		oTable.showModal('modal', '请选择元数据！');
-		return  ; 
+		return  ;
 	}
 	var getColumnInfoUrl = context+'/multiselect?cmd=getColumnInfo&metaDataId='+metaDataId;
 	var message = transToServer(getColumnInfoUrl,null);
 	var jsonMessage = JSON.stringify(message);
 	write_multiselect_ref(getColumnInfoUrl ,jsonMessage);
+}
+
+//参照重写
+function ref_write_json(rejsonArray){
+	//参照 选择json 做单独的处理 
+	console.log('------'+JSON.stringify(rejsonArray));
+	return true; //return true 继续重写页面字段  false 不做页面回写
 }

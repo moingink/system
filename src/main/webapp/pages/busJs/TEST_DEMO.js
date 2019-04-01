@@ -1,11 +1,13 @@
 buttonJson =[
               {name:'查询',fun:'queryTable(this)',buttonToken:'query'},
-              {name:'新增',fun:'setUpAdd(this),tog(this)',buttonToken:'add'},
-              {name:'修改',fun:'updateRow(this)',buttonToken:'update'},           
+              {name:'新增',fun:'setUpAdd(this),tog(this)',buttonToken:'addTestDemo'},
+              {name:'修改',fun:'setUpUpdate(this),updateRow(this)',buttonToken:'aupdateTestDemo'},           
               {name:'删除',fun:'deleteRowCheck(this)',buttonToken:'delete'},
               {name:'导入',fun:'upload(this)',buttonToken:'upload'},
-              {name:'洽谈业务',fun:'jump(this)',buttonToken:'third'}
+              {name:'跳转其他页面',fun:'jump(this)',buttonToken:'third'}
               ];
+
+var deleteIds = "";
 //导入初始化 必须 否则页面功能有问题
 $(function(){
 	var fileInput=new FileInput();
@@ -15,7 +17,7 @@ $(function(){
 function ref_write_json(rejsonArray){
 	//参照 选择json 做单独的处理 
 	console.log(JSON.stringify(rejsonArray));
-	return false; //return true 继续重写页面字段  false 不做页面回写
+	return true; //return true 继续重写页面字段  false 不做页面回写
 }
 
 // 点击删除按钮做判断其他函数
@@ -58,6 +60,8 @@ function upload(){
 //主字表模板
 function setUpAdd(t){
 	initDetailTable('001');
+	$("#insert,#update,#delete").removeAttr('disabled');
+	$("#insPage").prev().prev().find('button:eq(0)').removeAttr('disabled');
 }
 
 function initDetailTable(parentId){
@@ -69,8 +73,7 @@ function initDetailTable(parentId){
 	//dateBoxHandle();
 	validJsonDetail = transToServer(findUrlParam('base','queryValids','&dataSourceCode=MD_PERSONNEL'),'');
 	$('#detailDiv').bootstrapValidator(validJsonDetail);
-	$('#OPPORTY_CODE').parents('.col-sm-4').before("<h5 style='color:red; text-align:center;'>暂估收入填报要求：一笔暂估收入由多个业务账期组成时，应按业务账期分多条明细录入。</h5>");
-	$('#BUSINESS_ACCOUNT_PERIOD').attr('onchange','businessAccountPeriodChange()');//业务账期
+	//$('#OPPORTY_CODE').parents('.col-sm-4').before("<h5 style='color:red; text-align:center;'>暂估收入填报要求：一笔暂估收入由多个业务账期组成时，应按业务账期分多条明细录入。</h5>");
 }
 
 //初始化子表列表
@@ -109,10 +112,10 @@ function validateDelete(){
 
 //点击子表新增
 function insertDetail(){
-	if($('#insPage #OPPORTY_CODE').val() == ""){
-		oTable.showModal('提示', "商机编号不能为空！");
-		return;
-	}
+	//if($('#insPage #OPPORTY_CODE').val() == ""){
+		//oTable.showModal('提示', "商机编号不能为空！");
+		//return;
+	//}
 	clearForm();
 	detailTableShow();
 	mainTableHide();
@@ -187,15 +190,64 @@ function detailSave(){
 		}
 		json["RMRN"] = detailTableIndex;
 		json["ID"] = "add"+i++;
-		json = jsonHandle(json);
 		$('#detailTable').bootstrapTable('append', json);
 		$('.pagination-info').html("共"+detailTableIndex+"条记录");
 	}else{
-		json = jsonHandle(json);
 		$('#detailTable').bootstrapTable('updateByUniqueId', {id: json['ID'], row: json}); 
 	}
 }
-
+//重写保存 
+function savaByQuery(t,_dataSourceCode,$div){
+	var rowsData = $('#detailTable').bootstrapTable('getData');
+	if(rowsData.length == 0){
+		oTable.showModal('提示', "字表信息不能为空！");
+		return;
+	}
+	var childJsonData = new Array();
+	$.each(rowsData, function(i) {
+		childJsonData.push(JSON.stringify(rowsData[i]));
+	});
+	var buttonToken = $("#ins_or_up_buttontoken").val();
+	if(buttonToken == 'addTestDemo'){//新增
+		$('#ID').val(getId());//ID
+	}
+	console.log();
+	var message = transToServer(findBusUrlByButtonTonken(buttonToken, '', _dataSourceCode), getJson($('#insPage')), childJsonData, "MD_PERSONNEL", deleteIds);
+	oTable.showModal('modal', message);
+	if(message.indexOf('成功') != -1){
+		//$("#insPage").prev().prev().find('button:eq(0)').attr("disabled",true);
+		//$("#insert,#update,#delete").attr("disabled",true);
+		//$('#tj').removeAttr('disabled');
+	}
+}
+function transToServer(url,jsonData,childJsonData,childDataSourceCode,deleteIds){
+	var message;
+	$.ajax({
+    	async: false,
+    	type: "post",
+		url: url,
+		dataType: "json",
+		//防止深度序列化
+    	traditional: true,
+		data:{
+			"jsonData":jsonData,
+			"childJsonData":childJsonData,
+			"childDataSourceCode":childDataSourceCode,
+			"deleteIds":deleteIds
+		},
+		success: function(data){
+			message = data['message'];
+		},
+		error:function(XMLHttpRequest, textStatus, errorThrown){
+			//登录超时
+		    if(XMLHttpRequest.getResponseHeader("TIMEOUTURL")!=null){
+		    	window.top.location.href = XMLHttpRequest.getResponseHeader("TIMEOUTURL");
+		    }
+			message ="请求失败";
+		}
+	});
+    return message;
+};
 //清空表单数据
 function clearForm(){
 	$('#detailDiv').find("[id]").each(function() {
@@ -219,4 +271,20 @@ function divDisplay(){
 	$('#detailDiv').css('display','none');
 	$('#detailButton').css('display','none');
 }
-
+//子表页面设置
+function setUpDetailTable(){
+	$("#detailDiv").find("#CONTRACT_CODE,#CONTRACT_NAME,#CONTRACT_SIGNATORY,#CONTRACT_EFFECT_DATE,#BUSINESS_TYPE,#PRODUCT_MOLD,#CONTRACT_TAX,#CONTRACT_PERIOD,#PRODUCT_TYPE").attr("readonly","true");
+	$("#detailDiv").append("<input hidden='hidden' type='text' id='DETAIL_TYPE' value='0'>");
+	//$("#detailDiv #XZ_CONNECTIONS,#LJ_CONNECTIONS").parents('.col-md-4').css('display','none');//本月新增连连接数、本月累计连接数
+}
+//修改
+function setUpUpdate(t){
+	var selected = JSON.parse(getSelections());
+	if(selected.length != 1){
+		oTable.showModal('提示', "请选择一条数据进行修改！");
+		return;
+	}
+	initDetailTable(selected[0]["ID"]);
+	//$('#insPage').prevAll().eq(1).children().eq(0).attr('disabled','true');
+	//$("#insert,#update,#delete").attr("disabled",true);
+}

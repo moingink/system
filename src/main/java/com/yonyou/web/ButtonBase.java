@@ -67,7 +67,7 @@ import com.yonyou.business.button.util.ButForInsert;
 import com.yonyou.business.button.util.ButForInsertCompany;
 import com.yonyou.business.button.util.ButForInsertDepartment;
 import com.yonyou.business.button.util.ButForInsertForRoleDataAuth;
-import com.yonyou.business.button.util.ButForInsertTestDemo;
+//import com.yonyou.business.button.util.ButForInsertTestDemo;
 import com.yonyou.business.button.util.ButForMetadataPhyIns;
 import com.yonyou.business.button.util.ButForMetadataPhyUpd;
 import com.yonyou.business.button.util.ButForPhysicalDelete;
@@ -77,7 +77,7 @@ import com.yonyou.business.button.util.ButForResetCuMenu;
 import com.yonyou.business.button.util.ButForSelect;
 import com.yonyou.business.button.util.ButForUpdate;
 import com.yonyou.business.button.util.ButForUpdateStatus;
-import com.yonyou.business.button.util.ButForUpdateTestDemo;
+//import com.yonyou.business.button.util.ButForUpdateTestDemo;
 import com.yonyou.business.button.util.IncomeExpor;
 
 
@@ -205,9 +205,10 @@ public class ButtonBase extends ButtonController {
 		
 		
 		/******************************新增主子表*****************************************/
-		buttonMap.put("addTestDemo", new ButForInsertTestDemo());
+		//buttonMap.put("addTestDemo", new ButForInsertTestDemo());
 		/******************************修改主子表*****************************************/
-		buttonMap.put("aupdateTestDemo", new ButForUpdateTestDemo());
+		//buttonMap.put("aupdateTestDemo", new ButForUpdateTestDemo());
+		//  wzl
 		
 	
 		/******************************打印预览*****************************************/

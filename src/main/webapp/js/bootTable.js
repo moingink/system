@@ -23,7 +23,7 @@ var TableInit = function() {
 			pageList : [ 10, 25, 50, 100 ], // 可供选择的每页的行数（*）
 			search : false, // 是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
 			strictSearch : false,
- 			showColumns : false, // 是否显示所有的列
+ 			showColumns : true, // 是否显示所有的列
 			showRefresh : false, // 是否显示刷新按钮
 			minimumCountColumns : 2, // 最少允许的列数
 			clickToSelect : true, // 是否启用点击选中行
@@ -31,7 +31,7 @@ var TableInit = function() {
 			uniqueId : "ID", // 每一行的唯一标识，一般为主键列
 			showToggle : false, // 是否显示详细视图和列表视图的切换按钮
 			cardView : false, // 是否显示详细视图
-			detailView : false, // 是否显示父子表
+			detailView : true, // 是否显示父子表
 			showExport: false,                     //是否显示导出
 	        exportDataType: "selected",              //basic', 'all', 'selected'.
 			columns : oTableInit.columns[$e.attr("id")],
@@ -64,12 +64,30 @@ var TableInit = function() {
 		        clickFunction(row,tr);
 		    },
 		    onLoadSuccess: function (data){
+		    	//console.info("呵呵"+JSON.stringify(oTableInit.columns[$e.attr("id")]));
 		    	//cacheTableJsonArray=oTable.bootMethod($table, "getData");
 		    	page_heigth=$(document.body).height();
 		    	setParntHeigth(page_heigth);
 		    	bulidCacheTableJsonArray();
 		    	_isLoadTableData=true;
 		    	loadEnd();
+		    	/*$('#table tbody tr').each(function(i){                   // 遍历 tr
+			    	$(this).children('td').each(function(j){  // 遍历 tr 的各个 td
+			    		if(j<2) {
+			    			return true;
+			    		}
+			    		$(this).editable({
+			                type: "text",                //编辑框的类型。支持text|textarea|select|date|checklist等
+			                disabled: false,             //是否禁用编辑
+			                mode: "popup",              //编辑框的模式：支持popup和inline两种模式，默认是popup
+			                validate: function (value) { //字段验证
+			                    if (!$.trim(value)) {
+			                        return '不能为空';
+			                    }
+			                }
+			            });
+			    	});
+		    	});	*/
 		    },
 		    onLoadError: function(status,response){
 		    	//登录超时
@@ -82,6 +100,7 @@ var TableInit = function() {
 		    	dblClickFunction(row,tr);
 		    },
 		    onEditableSave: function (field, row, oldValue, $el) {
+		    	alert(1);
 		    	if(typeof(editableSave) == "function"){
 		    		editableSave(field, row, oldValue, $el);
 				}
@@ -107,8 +126,15 @@ var TableInit = function() {
             dataType: "text",
             success: function(data){
             	data_str=data;
+            	//console.info("weqweqweqe===="+JSON.stringify(data_str)+"   "+colurl);
             }
         });
+    	/*var jsonArr=[];
+    	$.each(JSON.parse(data_str),function(i,obj){
+    		obj['editable']= true;
+    		jsonArr.push(obj);
+    	});*/
+    	
         oTableInit.columns[$e.attr("id")] = JSON.parse(data_str);
         setTimeout(function () {
         	oTableInit.queryTable($e,qusurl);
@@ -126,9 +152,10 @@ var TableInit = function() {
 			dataType: "html",
 			success: function(data){
 				queryParamHtml = data;
+				//console.info("queryParamHtml---"+JSON.stringify(data));
 				}
 			});
-    	$e.append(queryParamHtml);
+    	//$e.append(queryParamHtml);
     };
     
     //初始化维护（新增&修改）页面
@@ -141,6 +168,7 @@ var TableInit = function() {
 			dataType: "html",
 			success: function(data){
 				maintainHtml = data;
+				//console.info("-----"+data);
 				}
 			});
     	//$e.append(maintainHtml);//防止覆盖主表ID等页面手动配置字段

@@ -19,6 +19,7 @@ function ref_write_json(rejsonArray) {
     return false; //return true 继续重写页面字段  false 不做页面回写
 }
 
+wzl
 // 点击删除按钮做判断其他函数
 
 function deleteRowCheck() {

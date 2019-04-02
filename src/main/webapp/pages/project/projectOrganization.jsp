@@ -391,51 +391,53 @@ function iframeVerification(){
 //获取指定form中的所有的<input>对象    
 function saveProjectOra() {    
 	console.log(getJson($('#tbody')));
-	var message = transToServer(findBusUrlByButtonTonken(buttonToken,'&table='+pageCode+"&button="+buttonToken,''),dataMessage);
+
+	//var message = transToServer(findBusUrlByButtonTonken(buttonToken,'&table='+pageCode+"&button="+buttonToken,''),dataMessage);
+	
 	//var saveDate = jsonValue();
 	
-// 	for(var i=0;i<saveDate.length;i++){
-// 		if(checkEmail(saveDate[i]["EMAIL"])==false){
-// 	  		alert('请填写正确邮箱');
-// 	  		saveDate = [];
-// 	  		return false;
-// 	  	}
-// 	  	if(checkPhone(saveDate[i]["TEL"])==false){
-// 	  		alert('请填写正确手机号');
-// 	  		saveDate = [];
-// 	  		return false;
-// 	  	}
-// 	}
+	for(var i=0;i<saveDate.length;i++){
+		if(checkEmail(saveDate[i]["EMAIL"])==false){
+	  		alert('请填写正确邮箱');
+	  		saveDate = [];
+	  		return false;
+	  	}
+	  	if(checkPhone(saveDate[i]["TEL"])==false){
+	  		alert('请填写正确手机号');
+	  		saveDate = [];
+	  		return false;
+	  	}
+	}
 	
-// 	if(saveDate == false){
-// 		return ;
-// 	}
-//   	var message ="";
-//   	//判断是否先删除在插入
-//   	if(buttonToken=="deleteForProJect"){
-// 	  	var dataMessage =saveDate;
-// 	  	dataMessage=JSON.stringify(dataMessage);
-// 	  	message = transToServer(findBusUrlByButtonTonken(buttonToken,'&table='+pageCode,''),dataMessage);
-//   	}
-//   	buttonToken = "addForProJect";
-//   	if(buttonToken == "addForProJect"){
-//   		var dataMessage =saveDate;
-//   		dataMessage=JSON.stringify(dataMessage);
-//   		message = transToServer(findBusUrlByButtonTonken(buttonToken,'&table='+pageCode+"&button="+buttonToken,''),dataMessage);
-//   		//console.log(message);
-//   	};
-//   	saveDate=[];
-//   	$("#ins_or_up_buttontoken").attr("disabled", true);
-//   	if(message=="保存成功"){
-// 	  	alert(message);
-// 	  	updateState ="update";
-// 	  	location.reload();
-// 		$("#ins_or_up_buttontoken").attr("disabled", true);
-// 		$("#add_button").attr("disabled", true);
-//   	}else{
-// 		alert(message);  	
-//   	}
-  	//ajax异步调用保存组织职能信息
+	if(saveDate == false){
+		return ;
+	}
+  	var message ="";
+  	//判断是否先删除在插入
+  	if(buttonToken=="deleteForProJect"){
+	  	var dataMessage =saveDate;
+	  	dataMessage=JSON.stringify(dataMessage);
+	  	message = transToServer(findBusUrlByButtonTonken(buttonToken,'&table='+pageCode,''),dataMessage);
+  	}
+  	buttonToken = "addForProJect";
+  	if(buttonToken == "addForProJect"){
+  		var dataMessage =saveDate;
+  		dataMessage=JSON.stringify(dataMessage);
+  		message = transToServer(findBusUrlByButtonTonken(buttonToken,'&table='+pageCode+"&button="+buttonToken,''),dataMessage);
+  		//console.log(message);
+  	};
+  	saveDate=[];
+  	$("#ins_or_up_buttontoken").attr("disabled", true);
+  	if(message=="保存成功"){
+	  	alert(message);
+	  	updateState ="update";
+	  	location.reload();
+		$("#ins_or_up_buttontoken").attr("disabled", true);
+		$("#add_button").attr("disabled", true);
+  	}else{
+		alert(message);  	
+  	}
+  	ajax异步调用保存组织职能信息
 }   
 
 
@@ -449,9 +451,9 @@ function checkEmail(str){
 	if(str === ""){ //输入不能为空
 		return false;
 	}else if(!reg.test(str)){ //正则验证不通过，格式不对
-　　　　	return false;
-　　	}else{
-　　　　	return true;
-　　	}
+		return false;
+	}else{
+		return true;
+	}
 }
 </script> 

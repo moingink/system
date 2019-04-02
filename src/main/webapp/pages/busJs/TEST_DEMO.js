@@ -237,7 +237,7 @@ function savaByQuery(t,_dataSourceCode,$div){
 		$('#ID').val(getId());//ID
 	}
 	console.log(delete getJson($('#insPage'))["USER_NAME"]);
-	var message = transToServer(findBusUrlByButtonTonken(buttonToken, '', _dataSourceCode), getJson($('#insPage')), childJsonData, "MD_PERSONNEL", deleteIds);
+	var message = transToServer(findBusUrlByButtonTonken(buttonToken, '', _dataSourceCode), getJson($('#insPage')), childJsonData, "MD_PERSONNEL", deleteIds,"PARENT_ID");
 	oTable.showModal('modal', message);
 	if(message.indexOf('成功') != -1){
 		//$("#insPage").prev().prev().find('button:eq(0)').attr("disabled",true);
@@ -245,7 +245,7 @@ function savaByQuery(t,_dataSourceCode,$div){
 		//$('#tj').removeAttr('disabled');
 	}
 }
-function transToServer(url,jsonData,childJsonData,childDataSourceCode,deleteIds){
+function transToServer(url,jsonData,childJsonData,childDataSourceCode,deleteIds,pid){
 	var message;
 	$.ajax({
     	async: false,
@@ -258,7 +258,8 @@ function transToServer(url,jsonData,childJsonData,childDataSourceCode,deleteIds)
 			"jsonData":jsonData,
 			"childJsonData":childJsonData,
 			"childDataSourceCode":childDataSourceCode,
-			"deleteIds":deleteIds
+			"deleteIds":deleteIds,
+			"parentFile":pid
 		},
 		success: function(data){
 			message = data['message'];

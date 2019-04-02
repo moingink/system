@@ -86,6 +86,7 @@ import com.yonyou.business.button.util.system.ButForUpdateTestDemo;
 public class ButtonBase extends ButtonController {
 
 	
+	
 	private Map<String,ButtonAbs> buttonMap =new HashMap<String,ButtonAbs>();
 	{
 		/*************************公共的*****************/
@@ -209,7 +210,8 @@ public class ButtonBase extends ButtonController {
 		/******************************修改主子表*****************************************/
 
 		buttonMap.put("updateTestDemo", new ButForUpdateTestDemo());
-
+		//  测试
+		
 		/******************************打印预览*****************************************/
 		buttonMap.put("printPreview", new ButForPrintPreview());
 		

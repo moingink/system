@@ -82,7 +82,7 @@
 
 		function findReferencePageParam(dataSourceCode,isInit) {
 			var isRadio =$("#ReferenceIsRadio").val();
-			if(dataSourceCode=="CD_METADATA_DETAIL"){
+			if(dataSourceCode=="CD_METADATA_DETAIL"&& metadata_id !="undefined" &&typeof(metadata_id) != undefined){
 				var pageParam = "&dataSourceCode="+dataSourceCode+"&isRadio="+isRadio+"&SEARCH-METADATA_ID="+metadata_id;
 			}else{
 				var pageParam = "&dataSourceCode="+dataSourceCode+"&isRadio="+isRadio;

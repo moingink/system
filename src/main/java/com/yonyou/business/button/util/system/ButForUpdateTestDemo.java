@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 
-import net.sf.json.JSONObject;
-
 import com.yonyou.business.button.ButtonAbs;
 import com.yonyou.business.button.util.IPublicBusColumn;
 import com.yonyou.util.BussnissException;
@@ -16,6 +14,7 @@ import com.yonyou.util.jdbc.IBaseDao;
 import com.yonyou.util.sql.SQLUtil.WhereEnum;
 import com.yonyou.util.sql.SqlWhereEntity;
 
+import net.sf.json.JSONObject;
 public class ButForUpdateTestDemo extends ButtonAbs {
 
 	@SuppressWarnings("unchecked")
@@ -28,7 +27,7 @@ public class ButForUpdateTestDemo extends ButtonAbs {
 		JSONObject json = JSONObject.fromObject(request.getParameter("jsonData"));
 		String[] childJsonArray = request.getParameterValues("childJsonData");
 		String deleteIds = request.getParameter("deleteIds");
-		
+		String parent_file = request.getParameter("parentFile");
 		this.appendData(json,request);
 		SqlWhereEntity whereEntity =new SqlWhereEntity();
 		try {
@@ -47,7 +46,7 @@ public class ButForUpdateTestDemo extends ButtonAbs {
 						dcmsDAO.updateByTransfrom(childTabName, childJson, where);
 					}else{
 						childJson.put("ID", "");
-						childJson.put("PARENT_ID", json.get("ID"));
+						childJson.put(parent_file, json.get("ID"));
 						if(!TOKEN_ENTITY.isEmpty()){
 							//制单人
 							childJson.put(IPublicBusColumn.CREATOR_ID, TOKEN_ENTITY.USER.getId());

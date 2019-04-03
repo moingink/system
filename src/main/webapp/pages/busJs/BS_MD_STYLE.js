@@ -1,14 +1,21 @@
 buttonJson =[
               {name:'查询',fun:'queryTable(this)',buttonToken:'query'},
-              {name:'新增',fun:'setUpAdd(this),tog(this)',buttonToken:'addMDEF'},
+//              {name:'新增',fun:'setUpAdd(this),tog(this)',buttonToken:'addMDEF'},
               {name:'修改',fun:'setUpUpdate(this),updateRow(this)',buttonToken:'updateMDEF'},           
               {name:'删除',fun:'deleteRowCheck(this)',buttonToken:'deleteMDEF'},
-              {name:'维护页面设置',fun:'doStyle(this)',buttonToken:'third'}
+              {name:'界面初始化',fun:'queryTable(this)',buttonToken:'query'}
               ];
-
+var sid="";
+var smate="";
 var deleteIds = "";
 //导入初始化 必须 否则页面功能有问题
+//上游跳转 存储上游 数据源标识 和 行id
 $(function(){
+	var url =this.URL;
+	var param1 =url.split("&")[2];
+	var param2 =url.split("&")[3];
+	sid= param1.split("=")[1];
+	smate =param2.split("=")[1];
 	var fileInput=new FileInput();
 	fileInput.init();
 });
@@ -42,17 +49,6 @@ function dblClickFunction(row,tr){
 	var json =JSON.parse(JSON.stringify(row));
 	console.log(json);
 }
-//业务跳转 
-
-function doStyle(t){
-	var selected = JSON.parse(getSelections());
-	if(selected.length != 1){
-		oTable.showModal('modal', "请选择一条数据进行操作");
-		return;
-	}
-	window.location.href=context+"/pages/singleTableModify.jsp?pageCode=BS_MD_STYLE&pageName=页面样式维护&pid="+selected[0]['ID']+"&mate=BASE_MAINDATA_DEF&token="+token;
-	
-}
 function ref_end(){
 	console.log("参选回调用");
 }
@@ -72,11 +68,11 @@ function setUpAdd(t){
 function initDetailTable(parentId){
 	console.log('主子表');
 	initDetailTableList();
-	bulidListPage($("#detailTable"),'BS_MD_DEF_B',pageParamFormat("PID = '"+parentId+"'"));
+	bulidListPage($("#detailTable"),'BS_MD_STYLE_B',pageParamFormat("PID = '"+parentId+"'"));
 	initDetailDiv();
-	bulidMaintainPage($('#detailDiv'),"BS_MD_DEF_B",'');
+	bulidMaintainPage($('#detailDiv'),"BS_MD_STYLE_B",'');
 	//dateBoxHandle();
-	validJsonDetail = transToServer(findUrlParam('base','queryValids','&dataSourceCode=BS_MD_DEF_B'),'');
+	validJsonDetail = transToServer(findUrlParam('base','queryValids','&dataSourceCode=BS_MD_STYLE_B'),'');
 	$('#detailDiv').bootstrapValidator(validJsonDetail);
 	//$('#OPPORTY_CODE').parents('.col-sm-4').before("<h5 style='color:red; text-align:center;'>暂估收入填报要求：一笔暂估收入由多个业务账期组成时，应按业务账期分多条明细录入。</h5>");
 }
@@ -217,7 +213,7 @@ function savaByQuery(t,_dataSourceCode,$div){
 		$('#ID').val(getId());//ID
 	}
 	console.log();
-	var message = transToServer(findBusUrlByButtonTonken(buttonToken, '', _dataSourceCode), getJson($('#insPage')), childJsonData, "BS_MD_DEF_B", deleteIds);
+	var message = transToServer(findBusUrlByButtonTonken(buttonToken, '', _dataSourceCode), getJson($('#insPage')), childJsonData, "BS_MD_STYLE_B", deleteIds);
 	oTable.showModal('modal', message);
 	if(message.indexOf('成功') != -1){
 		//$("#insPage").prev().prev().find('button:eq(0)').attr("disabled",true);

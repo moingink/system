@@ -34,6 +34,7 @@ public class BtnForDeleteM extends ButForPhysicalDelete{
 			ids[i]=id;
 		}
 		
+		
 		Map<String,String> mWhere = new HashMap<String,String>();
 		mWhere.put("ID", "ID IN ("+RmStringHelper.parseToSQLStringApos(ids)+") " );
 		SqlWhereEntity whereEntity = new SqlWhereEntity();

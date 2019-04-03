@@ -30,6 +30,7 @@ public class BtnForInsertM extends ButForInsert{
 			HttpServletResponse response) throws IOException, BussnissException {
 		
 		
+		
 		String dataSourceCode = request.getParameter("dataSourceCode");
 		String childDataSourceCode = request.getParameter("childDataSourceCode");
 		String tabName = findTableNameByDataSourceCode(dataSourceCode);

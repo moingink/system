@@ -67,7 +67,7 @@ function upload() {
 
 //主字表模板
 function setUpAdd(t) {
-    initDetailTable('001');
+    initDetailTable('1');
     $("#insert,#update,#delete").removeAttr('disabled');
     $("#insPage").prev().prev().find('button:eq(0)').removeAttr('disabled');
 }
@@ -77,7 +77,7 @@ function setUpAdd(t) {
 function initDetailTable(parentId) {
     console.log('主子表');
     initDetailTableList();
-    bulidListPage($("#detailTable"), 'BS_DATA_DICTIONARY_B1', pageParamFormat(" p_id= '" + parentId + "'"));
+    bulidListPage($("#detailTable"), 'BS_DATA_DICTIONARY_B1', pageParamFormat(" P_ID= '" + parentId + "'"));
     initDetailDiv();//wzl  初始化子表新增，修改页面
     bulidMaintainPage($('#detailDiv'), "BS_DATA_DICTIONARY_B1", '');
     validJsonDetail = transToServer(findUrlParam('base', 'queryValids', '&dataSourceCode=BS_DATA_DICTIONARY_B1'), '');
@@ -243,10 +243,10 @@ function savaByQuery(t, _dataSourceCode, $div) {
     var buttonToken = $("#ins_or_up_buttontoken").val();
     if (buttonToken == 'addTestDemo') {
         //新增
-        $('#ID').val(getId());//ID
+        //$('#ID').val(getId());//ID
     }
     console.log(delete getJson($('#insPage'))["USER_NAME"]);
-    var message = transToServer(findBusUrlByButtonTonken(buttonToken, '', _dataSourceCode), getJson($('#insPage')), childJsonData, "BS_DATA_DICTIONARY_B1", deleteIds, "p_id");
+    var message = transToServer(findBusUrlByButtonTonken(buttonToken, '', _dataSourceCode), getJson($('#insPage')), childJsonData, "BS_DATA_DICTIONARY_B1", deleteIds, "P_ID");
     oTable.showModal('modal', message);
     if (message.indexOf('成功') != -1) {
         //$("#insPage").prev().prev().find('button:eq(0)').attr("disabled",true);

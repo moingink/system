@@ -4,3 +4,4 @@ buttonJson =[
              {name:'修改',fun:'updateRow(this)',buttonToken:'updateWithCache'},
              {name:'删除',fun:'delRows(this)',buttonToken:'deleteWithCache'}
 			];
+

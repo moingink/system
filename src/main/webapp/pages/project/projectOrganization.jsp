@@ -362,6 +362,39 @@ function del(obj,id){
 	             }
     }
 }
+function jsonValue(){
+	var saveDate= [];
+	var data = [];
+	var j = {};
+ 	var  arr= document.getElementById('form').getElementsByTagName("*");
+ 	var l = arr.length;
+	for(var i=0;i<l;i++){
+	    if(arr[i].tagName && (arr[i].tagName=="INPUT" || arr[i].tagName=="SELECT")){
+	    	data.push(arr[i].value);
+	    }
+ 	}
+ 	//console.log(data);
+ 	for(var k=0; k*8 < data.length;k++){
+ 		var j = {};
+ 		j.PROJ_SOURCE_ID = ParentPKValue;
+ 		if(buttonToken=="deleteForProJect"){
+		  		j.ID = data[k*8];
+ 		}
+  		j.FUNCTIONAL_GROUP = data[k*8+1];
+	  	j.PERSON_TYPE = data[k*8+2];
+	  	j.NAME = data[k*8+3];
+	  	j.ROLE = data[k*8+4];
+	  	j.EMAIL = data[k*8+5];
+	  	j.TEL = data[k*8+6];
+	  	
+	  	j.USER_ID = data[k*8+7];
+	  	j.DR='0';
+	  	j.PROJ_TYPE = '0';
+  		saveDate.push(j);
+  	}
+  	//console.log(saveDate);
+  	return saveDate;
+}
 function save(){
 	//如果是新增 获取行所有数据保存  如果是修改  记录修改行id和列数据json 批量调用后台
 	if(btnToken=="add"){
@@ -390,12 +423,9 @@ function iframeVerification(){
 
 //获取指定form中的所有的<input>对象    
 function saveProjectOra() {    
-	console.log(getJson($('#tbody')));
 
-	//var message = transToServer(findBusUrlByButtonTonken(buttonToken,'&table='+pageCode+"&button="+buttonToken,''),dataMessage);
-	
-	//var saveDate = jsonValue();
-	
+	var saveDate = jsonValue();
+	console.log(saveDate);
 	for(var i=0;i<saveDate.length;i++){
 		if(checkEmail(saveDate[i]["EMAIL"])==false){
 	  		alert('请填写正确邮箱');
@@ -412,31 +442,32 @@ function saveProjectOra() {
 	if(saveDate == false){
 		return ;
 	}
-  	var message ="";
-  	//判断是否先删除在插入
-  	if(buttonToken=="deleteForProJect"){
-	  	var dataMessage =saveDate;
-	  	dataMessage=JSON.stringify(dataMessage);
-	  	message = transToServer(findBusUrlByButtonTonken(buttonToken,'&table='+pageCode,''),dataMessage);
-  	}
-  	buttonToken = "addForProJect";
-  	if(buttonToken == "addForProJect"){
-  		var dataMessage =saveDate;
-  		dataMessage=JSON.stringify(dataMessage);
-  		message = transToServer(findBusUrlByButtonTonken(buttonToken,'&table='+pageCode+"&button="+buttonToken,''),dataMessage);
-  		//console.log(message);
-  	};
-  	saveDate=[];
-  	$("#ins_or_up_buttontoken").attr("disabled", true);
-  	if(message=="保存成功"){
-	  	alert(message);
-	  	updateState ="update";
-	  	location.reload();
-		$("#ins_or_up_buttontoken").attr("disabled", true);
-		$("#add_button").attr("disabled", true);
-  	}else{
-		alert(message);  	
-  	}
+	
+//   	var message ="";
+//   	//判断是否先删除在插入
+//   	if(buttonToken=="deleteForProJect"){
+// 	  	var dataMessage =saveDate;
+// 	  	dataMessage=JSON.stringify(dataMessage);
+// 	  	message = transToServer(findBusUrlByButtonTonken(buttonToken,'&table='+pageCode,''),dataMessage);
+//   	}
+//   	buttonToken = "addForProJect";
+//   	if(buttonToken == "addForProJect"){
+//   		var dataMessage =saveDate;
+//   		dataMessage=JSON.stringify(dataMessage);
+//   		message = transToServer(findBusUrlByButtonTonken(buttonToken,'&table='+pageCode+"&button="+buttonToken,''),dataMessage);
+//   		//console.log(message);
+//   	};
+//   	saveDate=[];
+//   	$("#ins_or_up_buttontoken").attr("disabled", true);
+//   	if(message=="保存成功"){
+// 	  	alert(message);
+// 	  	updateState ="update";
+// 	  	location.reload();
+// 		$("#ins_or_up_buttontoken").attr("disabled", true);
+// 		$("#add_button").attr("disabled", true);
+//   	}else{
+// 		alert(message);  	
+//   	}
   	ajax异步调用保存组织职能信息
 }   
 

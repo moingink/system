@@ -94,7 +94,6 @@
 				pageParam=pageParam+bulidPageParam()+findExtParam(dataSourceCode);
 			}
 			
-			
 			console.log(pageParam);
 			return encodeURI(pageParam);
 		}

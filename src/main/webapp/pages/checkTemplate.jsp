@@ -27,8 +27,7 @@
 	</head>
 
 	<body>
-
-		<form class="form-horizontal"
+		<form class="form-horizontal">
 			<div class="panel panel-primary">
 				
 				<div class="panel-body" id="bulidTable">

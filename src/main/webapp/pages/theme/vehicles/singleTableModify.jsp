@@ -11,6 +11,8 @@
 	<head>
 		<meta charset="utf-8">
 		<title>单表模板</title>
+		<%-- <script type="text/javascript" src="<%=request.getContextPath() %>/vendor/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+		<link href="<%=request.getContextPath() %>/vendor/bootstrap3-editable/css/bootstrap-editable.css"> --%>
 	</head>
 	<body style="background-color: rgb(240,240,241)">
 
@@ -32,9 +34,9 @@
 						</div>
 							<!-- 列表页面 -->
 						<div id='button_div' class="button-menu"> </div>
-						<table id="table" data-row-style="rowStyle"></table>
-
-					
+						<table id="table" data-row-style="rowStyle">
+							
+						</table>
 					</div>
 				</div>
 			
@@ -81,6 +83,30 @@
 		var totalCode = '<%=request.getParameter("totalCode")%>';
 		$(function() {
 				bulidPage(true,true,true,true);
+				time();
 		});
+		function time(){
+			setTimeout(function(){
+				$('#table tbody tr').each(function(i){                   // 遍历 tr
+			    	$(this).children('td').each(function(j){  // 遍历 tr 的各个 td
+			    		if(j<2) {
+			    			return true;
+			    		}
+			    		$(this).editable({
+			                type: "text",                //编辑框的类型。支持text|textarea|select|date|checklist等
+			                disabled: false,             //是否禁用编辑
+			                mode: "popup",              //编辑框的模式：支持popup和inline两种模式，默认是popup
+			                validate: function (value) { //字段验证
+			                    if (!$.trim(value)) {
+			                        return '不能为空';
+			                    }
+			                }
+			            });
+			    	});
+		    	});	
+				time();
+			},2000)
+		}
+		
 	</script>
 </html>

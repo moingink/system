@@ -318,8 +318,8 @@ function iframeFunctionPreAssessmentAttachment(v){
  */
 function iframeRefresh(t){
 	var reshSrc="showAffix.jsp";
-	  var iframe1=document.getElementById("showAffixJspIframe"); 
-	　　 iframe1.src = reshSrc;
+	var iframe1= document.getElementById("showAffixJspIframe");
+	iframe1.src = reshSrc;
 }
 /*附件集体展示iframe End*/
 

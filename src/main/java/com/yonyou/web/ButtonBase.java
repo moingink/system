@@ -77,6 +77,8 @@ import com.yonyou.business.button.util.ButForSelect;
 import com.yonyou.business.button.util.ButForUpdate;
 import com.yonyou.business.button.util.ButForUpdateStatus;
 import com.yonyou.business.button.util.IncomeExpor;
+import com.yonyou.business.button.util.system.ButForInsertTestDemo;
+import com.yonyou.business.button.util.system.ButForUpdateTestDemo;
 
 
 @RestController
@@ -202,14 +204,16 @@ public class ButtonBase extends ButtonController {
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-	
+		/******************************新增主子表*****************************************/
+		buttonMap.put("addTestDemo", new ButForInsertTestDemo());
+		/******************************修改主子表*****************************************/
+
+		buttonMap.put("updateTestDemo", new ButForUpdateTestDemo());
+        //  测阿萨v发v
+        //方式通过深入体会b
+		//测试冲突类解决办法
+		//测试冲突类解决办法
+		//测试文件冲突解决办法 #  阿斯顿
 		/******************************打印预览*****************************************/
 		buttonMap.put("printPreview", new ButForPrintPreview());
 		

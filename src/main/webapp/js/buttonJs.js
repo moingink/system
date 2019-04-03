@@ -32,7 +32,7 @@ var imgType = {
               '打印':'print',
               '导出':'export',
               '导出当页':'exportCur',
-              '导出全部':'exportAll',
+              '导出全部':'exportall',
               '导入':'import',
               '冻结申请单':'djsqd',
               '返回':'back',

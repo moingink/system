@@ -61,7 +61,7 @@ public class ButForUpdate extends ButtonAbs {
 							//验证
 							Map<String,Object> dataMap=this.findNoticeJsonDataById(id,table, dcmsDAO);
 							dataMap.put("MODIFY_PLACE_STATE", OPERATION);
-							this.handleTask(IBusFlowOperationType.CLOSE_HANDLE_NEED, "PROJECT_MODIFY_EXECUTE_YZ", dataMap, request);
+							//this.handleTask(IBusFlowOperationType.CLOSE_HANDLE_NEED, "PROJECT_MODIFY_EXECUTE_YZ", dataMap, request);
 							break;
 					}
 					
@@ -73,7 +73,7 @@ public class ButForUpdate extends ButtonAbs {
 							Map<String,Object> dataMap =this.findNoticeJsonDataById(id,table, dcmsDAO);
 							dataMap.put("BUS_ID", dataMap.get("PARENT_ID"));
 							dataMap.put("AUDIT_STATE", "0");
-							this.handleTask(IBusFlowOperationType.CLOSE_HANDLE_NEED, "BUS_CONTRACT_SIGN_SEAL_AUDIT", dataMap, request);
+							//this.handleTask(IBusFlowOperationType.CLOSE_HANDLE_NEED, "BUS_CONTRACT_SIGN_SEAL_AUDIT", dataMap, request);
 							break;
 					}
 					break;
@@ -84,7 +84,7 @@ public class ButForUpdate extends ButtonAbs {
 							Map<String,Object> dataMap =this.findNoticeJsonDataById(id,table, dcmsDAO);
 							dataMap.put("BUS_ID", dataMap.get("PARENT_ID"));
 							dataMap.put("AUDIT_STATE", "0");
-							this.handleTask(IBusFlowOperationType.CLOSE_HANDLE_NEED, "BUS_CONTRACT_HANDARCHIV_AUDIT", dataMap, request);
+							//this.handleTask(IBusFlowOperationType.CLOSE_HANDLE_NEED, "BUS_CONTRACT_HANDARCHIV_AUDIT", dataMap, request);
 							break;
 					}
 					break;

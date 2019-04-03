@@ -47,19 +47,7 @@
 </thead>
 
 <tbody id="tbody">
-	<!-- <tr>
-		<td class="bs-checkbox "><input type="checkbox"></td>
-		<td><select id="s1" name="UrbanDepNo" style="width:100%"><option value="1">项目管理委员会</option><option value="2">项目核心管理团队</option><option value="3">资源环境准备组</option><option value="4">系统设计组</option><option value="5">应用开发部署组</option><option value="6">系统集成组</option><option value="7">质量保证团队</option></select></td>
-		<td><select id="s2" name="UrbanDepNo" style="width:100%"><option value="1">内部人员</option><option value="2">外部人员</option></select></td>
-		<td><div class="col-md-8"><input type="TEXT" class="form-control"  value=""/><i class="form-control-feedback" style="display: none;"></i></div></td>
-		<td><select id="s3" name="UrbanDepNo" style="width:100%"><option value="1">领导</option><option value="2">总副总</option></select></td>
-		<td><input type="text" style="width:108%"></td>
-		<td><input type="text" style="width:108%"></td>
-		<td><select id="s3" name="UrbanDepNo" style="width:100%"><option value="1">领导</option><option value="2">总副总</option></select></td>
-		<td><input type="text" style="width:108%"></td>
-		<td><input type="text" style="width:108%;display:none"></td>
-		<td ><a href="javascript:;" onclick="del(this);">删除</a></td>
-	</tr> -->
+	
 	
 </tbody>
 </table>
@@ -188,10 +176,7 @@ window.onload = function(){
 			tr.appendChild(t5);
 			tr.appendChild(t6);
 			tr.appendChild(t7);
-			/*tr.appendChild(t8);
-			tr.appendChild(t9);
-			tr.appendChild(t10);
-			tr.appendChild(t11);*/
+			
 			tr.appendChild(del);
 			$("#"+id+" option[value='"+zngroup+"']").attr("selected","selected");
 			$("#"+ida+" option[value='"+role_value+"']").attr("selected","selected");
@@ -238,23 +223,6 @@ window.onload = function(){
 	});
 	$("#update_button").attr("disabled", false);
 	//******************************************//
-		 if(keyWord != 1){
-		 	if(bill_statue!=""){
-			 	if(bill_statue !="0" && bill_statue!= "7"){
-					$("#ins_or_up_buttontoken").attr("disabled", true);
-					$("#add_button").attr("disabled", true);
-					$("#update_button").attr("disabled", true);
-					$(":input").each(function(){
-							$(this).attr("disabled",true);
-					});
-					$("select").each(function(){
-							$(this).attr("disabled",true);
-						});
-					}
-			 }
-		 }
-	
-		 hide(isHide);//隐藏及置灰
 } 
 function update(){
 	$(":input").each(function(){
@@ -304,10 +272,10 @@ var selectvar = '<select id="UrbanDepNo0" name="UrbanDepNo" style="width:100%">'
 		var t10=document.createElement("td");
 		var ta=document.createElement("td");
 		t1.innerHTML='<input type="text" style="display:none "/>';
-		t2.innerHTML='<select class="form-control" id="s1" name="UrbanDepNo" style="width:100%;border:none;"><option value="1">项目管理委员会</option><option value="2">项目核心管理团队</option><option value="3">资源环境准备组</option><option value="4">系统设计组</option><option value="5">应用开发部署组</option><option value="6">系统集成组</option><option value="7">质量保证团队</option></select>';
-		t3.innerHTML='<select class="form-control UrbanDepNo" id="UrbanDepNo0" name="UrbanDepNo" style="width:100%;border:none;"><option value="1">内部人员</option><option value="2">外部人员</option></select>';
+		t2.innerHTML='<select class="form-control" id="grop_type" name="grop_type" style="width:100%;border:none;"><option value="1">项目管理委员会</option><option value="2">项目核心管理团队</option><option value="3">资源环境准备组</option><option value="4">系统设计组</option><option value="5">应用开发部署组</option><option value="6">系统集成组</option><option value="7">质量保证团队</option></select>';
+		t3.innerHTML='<select class="form-control UrbanDepNo" id="persion_type" name="persion_type" style="width:100%;border:none;"><option value="1">内部人员</option><option value="2">外部人员</option></select>';
 		t4.innerHTML='<input type="text" style="width:100%;border:none;"  onclick="checkReference(this,\'REF(RM_USER_REF,NAME:USER_NAME;EMAIL:USER_EMAIL;ID:USER_ID,1)\',\'NAME\',\'INSUP\');"/>';
-		t5.innerHTML='<select class="form-control" id="s3" name="UrbanDepNo" style="width:100%;border:none;"><option value="1">领导</option><option value="2">总、副总</option><option value="3">分管领导</option><option value="4">销售总监</option><option value="5">项目总监</option><option value="6">产品总监</option><option value="7">项目经理</option><option value="8">客户经理</option><option value="9">产品方案经理</option><option value="10">运营经理</option><option value="11">维护经理</option><option value="12">现场协调</option><option value="13">软件架构师</option><option value="14">系统架构师</option><option value="15">开发经理</option><option value="16">前台工程师</option><option value="17">后台工程师</option><option value="17">质量保障经理</option><option value="19">测试工程师</option></select>';
+		t5.innerHTML='<select class="form-control" id="role_type" name="role_type" style="width:100%;border:none;"><option value="1">领导</option><option value="2">总、副总</option><option value="3">分管领导</option><option value="4">销售总监</option><option value="5">项目总监</option><option value="6">产品总监</option><option value="7">项目经理</option><option value="8">客户经理</option><option value="9">产品方案经理</option><option value="10">运营经理</option><option value="11">维护经理</option><option value="12">现场协调</option><option value="13">软件架构师</option><option value="14">系统架构师</option><option value="15">开发经理</option><option value="16">前台工程师</option><option value="17">后台工程师</option><option value="17">质量保障经理</option><option value="19">测试工程师</option></select>';
 		t6.innerHTML='<input type="text" class="form-control" style="width:100%;border:none;" />';
 		t7.innerHTML='<input type="text" class="form-control" style="width:100%;border:none;" /><input type="hidden"    value=""/>';
 		//t8.innerHTML='<input type="text"/>';
@@ -401,40 +369,6 @@ function save(){
 	}
 }
 
-function jsonValue(){
-	var saveDate= [];
-	var data = [];
-	var j = {};
- 	var  arr= document.getElementById('form').getElementsByTagName("*");
- 	var l = arr.length;
-	for(var i=0;i<l;i++){
-	    if(arr[i].tagName && (arr[i].tagName=="INPUT" || arr[i].tagName=="SELECT")){
-	    	data.push(arr[i].value);
-	    }
- 	}
- 	//console.log(data);
- 	for(var k=0; k*8 < data.length;k++){
- 		var j = {};
- 		j.PROJ_SOURCE_ID = ParentPKValue;
- 		if(buttonToken=="deleteForProJect"){
-		  		j.ID = data[k*8];
- 		}
-  		j.FUNCTIONAL_GROUP = data[k*8+1];
-	  	j.PERSON_TYPE = data[k*8+2];
-	  	j.NAME = data[k*8+3];
-	  	j.ROLE = data[k*8+4];
-	  	j.EMAIL = data[k*8+5];
-	  	j.TEL = data[k*8+6];
-	  	
-	  	j.USER_ID = data[k*8+7];
-	  	j.DR='0';
-	  	j.PROJ_TYPE = '0';
-  		saveDate.push(j);
-  	}
-  	//console.log(saveDate);
-  	return saveDate;
-}
-
 function iframeVerification(){
 	var message = "";
 	var flag = true;
@@ -456,8 +390,11 @@ function iframeVerification(){
 
 //获取指定form中的所有的<input>对象    
 function saveProjectOra() {    
+	console.log(getJson($('#tbody')));
+
+	//var message = transToServer(findBusUrlByButtonTonken(buttonToken,'&table='+pageCode+"&button="+buttonToken,''),dataMessage);
 	
-	var saveDate = jsonValue();
+	//var saveDate = jsonValue();
 	
 	for(var i=0;i<saveDate.length;i++){
 		if(checkEmail(saveDate[i]["EMAIL"])==false){
@@ -500,7 +437,7 @@ function saveProjectOra() {
   	}else{
 		alert(message);  	
   	}
-  	//ajax异步调用保存组织职能信息
+  	ajax异步调用保存组织职能信息
 }   
 
 
@@ -512,11 +449,11 @@ function checkPhone(value){
 function checkEmail(str){
 	var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"); //正则表达式
 	if(str === ""){ //输入不能为空
-　　　　	return false;
-　　	}else if(!reg.test(str)){ //正则验证不通过，格式不对
-　　　　	return false;
-　　	}else{
-　　　　	return true;
-　　	}
+		return false;
+	}else if(!reg.test(str)){ //正则验证不通过，格式不对
+		return false;
+	}else{
+		return true;
+	}
 }
 </script> 

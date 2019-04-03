@@ -40,7 +40,10 @@ function deleteRowCheck(){
 //双击事件  列表模版双击事件跳转其他操作
 function dblClickFunction(row,tr){
 	var json =JSON.parse(JSON.stringify(row));
-	console.log(json);
+	console.log(json.ID);
+	//获取主表主键传递
+	window.location.href=context+"/pages/test_demo.jsp?ParentPKValue="+json.ID+"&token="+token;
+	
 }
 
 //业务跳转
@@ -65,18 +68,37 @@ function setUpAdd(t){
 	$("#insPage").prev().prev().find('button:eq(0)').removeAttr('disabled');
 }
 
+
+//
 function initDetailTable(parentId){
 	console.log('主子表');
 	initDetailTableList();
+	getRecord(parentId);
 	bulidListPage($("#detailTable"),'MD_PERSONNEL',pageParamFormat("PARENT_ID = '"+parentId+"'"));
 	initDetailDiv();
 	bulidMaintainPage($('#detailDiv'),"MD_PERSONNEL",'');
-	//dateBoxHandle();
 	validJsonDetail = transToServer(findUrlParam('base','queryValids','&dataSourceCode=MD_PERSONNEL'),'');
 	$('#detailDiv').bootstrapValidator(validJsonDetail);
 	//$('#OPPORTY_CODE').parents('.col-sm-4').before("<h5 style='color:red; text-align:center;'>暂估收入填报要求：一笔暂估收入由多个业务账期组成时，应按业务账期分多条明细录入。</h5>");
 }
-
+function getRecord(id){
+	var param = "&dataSourceCode=TEST_DEMO&SEARCH-ID="+id;
+	if(typeof(specifyParam) != "undefined"){
+		param += specifyParam;
+	}
+	var record = querySingleRecord(param);
+	$('#back').removeAttr("disabled");
+	
+	if(!jQuery.isEmptyObject(record)){
+		//已存在记录时为修改
+		button ="";
+		$("#ins_or_up_buttontoken").val('update');
+		$("#tog_titleName").html("修改");
+		$inspage.find("[id]").each(function() {			
+				$(this).val(record[$(this).attr("id")]);
+		});
+	}
+}
 //初始化子表列表
 function initDetailTableList(){
 	var tableHtml = '<div class="col-md-12" style="margin-top:10px; margin-bottom:10px; padding:0;">'+
@@ -208,12 +230,14 @@ function savaByQuery(t,_dataSourceCode,$div){
 	$.each(rowsData, function(i) {
 		childJsonData.push(JSON.stringify(rowsData[i]));
 	});
+	//重置编码或名称字段为空
 	var buttonToken = $("#ins_or_up_buttontoken").val();
-	if(buttonToken == 'addTestDemo'){//新增
+	if(buttonToken == 'addTestDemo'){
+		//新增
 		$('#ID').val(getId());//ID
 	}
-	console.log();
-	var message = transToServer(findBusUrlByButtonTonken(buttonToken, '', _dataSourceCode), getJson($('#insPage')), childJsonData, "MD_PERSONNEL", deleteIds);
+	console.log(delete getJson($('#insPage'))["USER_NAME"]);
+	var message = transToServer(findBusUrlByButtonTonken(buttonToken, '', _dataSourceCode), getJson($('#insPage')), childJsonData, "MD_PERSONNEL", deleteIds,"PARENT_ID");
 	oTable.showModal('modal', message);
 	if(message.indexOf('成功') != -1){
 		//$("#insPage").prev().prev().find('button:eq(0)').attr("disabled",true);
@@ -221,7 +245,7 @@ function savaByQuery(t,_dataSourceCode,$div){
 		//$('#tj').removeAttr('disabled');
 	}
 }
-function transToServer(url,jsonData,childJsonData,childDataSourceCode,deleteIds){
+function transToServer(url,jsonData,childJsonData,childDataSourceCode,deleteIds,pid){
 	var message;
 	$.ajax({
     	async: false,
@@ -234,7 +258,8 @@ function transToServer(url,jsonData,childJsonData,childDataSourceCode,deleteIds)
 			"jsonData":jsonData,
 			"childJsonData":childJsonData,
 			"childDataSourceCode":childDataSourceCode,
-			"deleteIds":deleteIds
+			"deleteIds":deleteIds,
+			"parentFile":pid
 		},
 		success: function(data){
 			message = data['message'];

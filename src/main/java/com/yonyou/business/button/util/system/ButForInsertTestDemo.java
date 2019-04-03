@@ -16,8 +16,8 @@ import com.yonyou.util.sql.SqlWhereEntity;
 import net.sf.json.JSONObject;
 
 /**
- * 新增暂估收入主表
-* @ClassName ButForInsertEstimatedIncome 
+ * 测试主表
+* @ClassName ButForInsertTestDemo 
 * @author hubc
 * @date 2018年7月3日
  */
@@ -35,6 +35,8 @@ public class ButForInsertTestDemo extends ButForInsert{
 		JSONObject json = JSONObject.fromObject(request.getParameter("jsonData"));
 		String[] childJsonArray = request.getParameterValues("childJsonData");
 		String deleteIds = request.getParameter("deleteIds");
+		String parentFile = request.getParameter("parentFile");
+		
 		String id= "";
 		this.appendData(json,request);
 		try {
@@ -46,7 +48,7 @@ public class ButForInsertTestDemo extends ButForInsert{
 			for(int i = 0;i < childJsonArray.length;i++){
 				JSONObject childJson = JSONObject.fromObject(childJsonArray[i]);
 				childJson.put("ID", "");
-				childJson.put("PARENT_ID", id);
+				childJson.put(parentFile, id);
 				this.appendData(childJson,request);
 				try {
 					dcmsDAO.insertByTransfrom(childTabName, childJson);

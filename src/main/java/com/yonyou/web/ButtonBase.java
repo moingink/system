@@ -199,7 +199,6 @@ public class ButtonBase extends ButtonController {
 
 		/******************************修改主子表*****************************************/
 
-		/******************************修改主子表*****************************************/
 
 		buttonMap.put("updateTestDemo", new ButForUpdateTestDemo());
 

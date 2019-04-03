@@ -11,6 +11,7 @@ $(function () {
     var fileInput = new FileInput();
     fileInput.init();
 });
+
 //重写参照
 function ref_write_json(rejsonArray) {
     //参照 选择json 做单独的处理
@@ -31,6 +32,8 @@ function deleteRowCheck() {
         oTable.showModal('modal', "不允许删除已提交或审批完单据");
     } else {
         delRows(t);
+
+
     }
 
 }
@@ -40,6 +43,7 @@ function dblClickFunction(row, tr) {
     var json = JSON.parse(JSON.stringify(row));
     console.log(json);
 }
+
 //业务跳转
 
 function jump(t) {
@@ -50,6 +54,7 @@ function jump(t) {
 function ref_end() {
     console.log("参选回调用");
 }
+
 //主字表模板
 
 //导入

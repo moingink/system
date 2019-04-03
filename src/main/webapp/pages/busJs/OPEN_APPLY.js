@@ -290,7 +290,7 @@ function cachetUseSealApply(t){
 		oTable.showModal('提示', "只能推送审批完成的数据");
 		return;
 	}
-	parent.window.location = nginxPortalUrl+'/pages/t/vehicles/menuPage.jsp?totalcode=100150&totalname=公章用印申请&locationCode=100150102101&token='+token;
+	parent.window.location = nginxportalUrl+'/pages/t/vehicles/menuPage.jsp?totalcode=100150&totalname=公章用印申请&locationCode=100150102101&token='+token;
 }
 
 //重写提交函数

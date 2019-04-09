@@ -89,7 +89,7 @@
 	$('input[name^="ParentPK"]').val(ParentPKValue);
 	var  bill_state='<%=request.getParameter("billState")%>';
 	
-	//重写back方法
+	//重写back方法  
 	function back(t){
 		tog(t);
 		//排除主表主键

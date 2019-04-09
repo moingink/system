@@ -22,7 +22,7 @@ function ref_write_json(rejsonArray){
 
 // 点击删除按钮做判断其他函数
 
-function deleteRowCheck(){
+function deleteRowCheck(t){
 	var selected = JSON.parse(getSelections());
 	if(selected.length != 1){
 		oTable.showModal('modal', "请选择一条数据进行操作");

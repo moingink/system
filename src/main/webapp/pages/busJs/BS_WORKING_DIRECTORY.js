@@ -4,7 +4,7 @@ buttonJson = [
     {name: '修改', fun: 'updateRow(this)', buttonToken: 'update'},
     {name: '删除', fun: 'deleteRowCheck(this)', buttonToken: 'delete'},
     {name: '导入', fun: 'upload(this)', buttonToken: 'upload'},
-    {name: '洽谈业务', fun: 'jump(this)', buttonToken: 'third'}
+    {name: '新增目录', fun: 'upload(this)', buttonToken: 'ConnectTest'}
 ];
 //导入初始化 必须 否则页面功能有问题
 $(function () {
@@ -61,3 +61,43 @@ function upload() {
     $('#uploadModal').modal('show');
 }
 
+//重写保存
+function savaByQuery() {
+    var message = "";
+    var buttonToken = "DirectoryTest";
+    var jsonData = getJson($('#insPage'));
+    message = transToServer(findBusUrlByButtonTonken(buttonToken, '', _dataSourceCode), jsonData);
+    oTable.showModal('modal', message);
+
+    /*  var message ="";
+      var buttonToken =$("#ins_or_up_buttontoken").val();
+      message = transToServer(findBusUrlByButtonTonken(buttonToken,'',_dataSourceCode),getJson($div));
+      oTable.showModal('modal', message);
+  */
+}
+
+function transToServer(url, jsonData) {
+    var message;
+    $.ajax({
+        async: false,
+        type: "post",
+        url: url,
+        dataType: "json",
+        //防止深度序列化
+        traditional: true,
+        data: {
+            "jsonData": jsonData
+        },
+        success: function (data) {
+            message = data['message'];
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            //登录超时
+            if (XMLHttpRequest.getResponseHeader("TIMEOUTURL") != null) {
+                window.top.location.href = XMLHttpRequest.getResponseHeader("TIMEOUTURL");
+            }
+            message = "请求失败";
+        }
+    });
+    return message;
+};

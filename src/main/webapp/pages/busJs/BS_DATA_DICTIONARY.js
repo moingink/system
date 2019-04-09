@@ -5,7 +5,7 @@ buttonJson = [
     {name: '修改', fun: 'setUpUpdate(this),updateRow(this)', buttonToken: 'updateTestDemo'},
     {name: '删除', fun: 'deleteRowCheck(this)', buttonToken: 'delete'},
     {name: '导入', fun: 'upload(this)', buttonToken: 'upload'},
-    {name: '跳转其他页面', fun: 'jump(this)', buttonToken: 'third'}
+    // {name: '跳转其他页面', fun: 'jump(this)', buttonToken: 'third'}
 ];
 
 var deleteIds = "";

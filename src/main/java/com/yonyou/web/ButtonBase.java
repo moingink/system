@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yonyou.business.button.util.system.ButForConnectTest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -222,7 +223,13 @@ public class ButtonBase extends ButtonController {
 		//测试文件冲突解决办法 #  阿斯顿
 		/******************************打印预览*****************************************/
 		buttonMap.put("printPreview", new ButForPrintPreview());
-		
+
+        /******************************wzl  开始*****************************************/
+
+        buttonMap.put("ConnectTest", new ButForConnectTest());
+        buttonMap.put("DirectoryTest", new ButForDirectoryTest());
+
+        /******************************wzl  结束*****************************************/
 	}
 	
 	@Override

@@ -2,14 +2,15 @@ buttonJson = [
     {name: '查询', fun: 'queryTable(this)', buttonToken: 'query'},
     {name: '新增', fun: 'tog(this)', buttonToken: 'add'},
     {name: '修改', fun: 'updateRow(this)', buttonToken: 'update'},
-    {name: '删除', fun: 'deleteRowCheck(this)', buttonToken: 'delete'}
+    {name: '删除', fun: 'deleteRowCheck(this)', buttonToken: 'delete'},
+    {name: '导入', fun: 'upload(this)', buttonToken: 'upload'},
+    {name: '连接测试', fun: 'ConnectTest(this)', buttonToken: 'ConnectTest1'}
 ];
 //导入初始化 必须 否则页面功能有问题
 $(function () {
     var fileInput = new FileInput();
     fileInput.init();
 });
-
 //重写参照
 function ref_write_json(rejsonArray) {
     //参照 选择json 做单独的处理
@@ -39,7 +40,6 @@ function dblClickFunction(row, tr) {
     var json = JSON.parse(JSON.stringify(row));
     console.log(json);
 }
-
 //业务跳转
 
 function jump(t) {
@@ -50,7 +50,11 @@ function jump(t) {
 function ref_end() {
     console.log("参选回调用");
 }
-
 //主字表模板
 
+//导入
+function upload() {
+    console.log("导入");
+    $('#uploadModal').modal('show');
+}
 

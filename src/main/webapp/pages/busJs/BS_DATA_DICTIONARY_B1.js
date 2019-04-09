@@ -3,8 +3,7 @@ buttonJson = [
     {name: '新增', fun: 'tog(this)', buttonToken: 'add'},
     {name: '修改', fun: 'updateRow(this)', buttonToken: 'update'},
     {name: '删除', fun: 'deleteRowCheck(this)', buttonToken: 'delete'},
-    {name: '导入', fun: 'upload(this)', buttonToken: 'upload'},
-    {name: '洽谈业务', fun: 'jump(this)', buttonToken: 'third'}
+    {name: '导入', fun: 'upload(this)', buttonToken: 'upload'}
 ];
 //导入初始化 必须 否则页面功能有问题
 $(function () {

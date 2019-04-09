@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yonyou.business.button.util.system.ButForConnectTest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -77,6 +78,7 @@ import com.yonyou.business.button.util.ButForSelect;
 import com.yonyou.business.button.util.ButForUpdate;
 import com.yonyou.business.button.util.ButForUpdateStatus;
 import com.yonyou.business.button.util.IncomeExpor;
+import com.yonyou.business.button.util.system.ButForInsertOrUpdate;
 import com.yonyou.business.button.util.system.ButForInsertTestDemo;
 import com.yonyou.business.button.util.system.ButForUpdateTestDemo;
 
@@ -209,6 +211,11 @@ public class ButtonBase extends ButtonController {
 		/******************************修改主子表*****************************************/
 
 		buttonMap.put("updateTestDemo", new ButForUpdateTestDemo());
+		
+		//一主多子 子表保存
+		buttonMap.put("saveChildDemo", new ButForInsertOrUpdate());
+		
+		//
         //  测阿萨v发v
         //方式通过深入体会b
 		//测试冲突类解决办法
@@ -216,7 +223,13 @@ public class ButtonBase extends ButtonController {
 		//测试文件冲突解决办法 #  阿斯顿
 		/******************************打印预览*****************************************/
 		buttonMap.put("printPreview", new ButForPrintPreview());
-		
+
+        /******************************wzl  开始*****************************************/
+
+        buttonMap.put("ConnectTest", new ButForConnectTest());
+        buttonMap.put("DirectoryTest", new ButForDirectoryTest());
+
+        /******************************wzl  结束*****************************************/
 	}
 	
 	@Override

@@ -1,0 +1,48 @@
+@charset "UTF-8";
+#interval{
+	margin:20px 60px;
+}
+#sy_regeist_name_interval{
+	margin:10px 0px 10px 33px;
+}
+#flow_b{
+	margin-top:10px;
+}
+
+/* .input-box-toggle {
+    text-align: center;
+    color: #32adfa;
+    cursor: pointer;
+}
+.button-menu {
+    border: 1px solid #dedede;
+    background-color: #fff;
+    padding: 20px 20px;
+}
+.button-menu .button-group .img {
+    display: block;
+    width: 35px;
+    height: 35px;
+    margin: 0 auto;
+}
+.button-menu .button-group {
+    display: inline-block;
+    margin: 0 15px;
+    cursor: pointer;
+}
+.button-menu .button-group span {
+    color: #999;
+}
+
+.button-menu .button-group.sel .img {
+    background: url(../../../images/20.png) no-repeat;
+}
+.button-menu .button-group.ad .img {
+    background: url(../../../images/add.png) no-repeat;
+}
+.button-menu .button-group.up .img {
+    background: url(../../../images/up.png) no-repeat;
+}
+.button-menu .button-group.de .img {
+    background: url(../../../images/del.png) no-repeat;
+} */

@@ -21,19 +21,16 @@ function ref_write_json(rejsonArray) {
 
 // 点击删除按钮做判断其他函数
 
-function deleteRowCheck() {
+function deleteRowCheck(t) {
     var selected = JSON.parse(getSelections());
     if (selected.length != 1) {
         oTable.showModal('modal', "请选择一条数据进行操作");
         return;
     }
     var billStatus = selected[0]['BILL_STATUS'];
-    if (billStatus != 0 && billStatus != 7) {
-        oTable.showModal('modal', "不允许删除已提交或审批完单据");
-    } else {
+    //if (billStatus != 0 && billStatus != 7) {
+    // oTable.showModal('modal', "不允许删除已提交或审批完单据");
         delRows(t);
-    }
-
 }
 
 //双击事件  列表模版双击事件跳转其他操作
@@ -67,13 +64,15 @@ function savaByQuery() {
     var buttonToken = "DirectoryTest";
     var jsonData = getJson($('#insPage'));
     message = transToServer(findBusUrlByButtonTonken(buttonToken, '', _dataSourceCode), jsonData);
-    oTable.showModal('modal', message);
+    //oTable.showModal('modal', message);
+    // savaDirectory();
+}
 
-    /*  var message ="";
-      var buttonToken =$("#ins_or_up_buttontoken").val();
-      message = transToServer(findBusUrlByButtonTonken(buttonToken,'',_dataSourceCode),getJson($div));
-      oTable.showModal('modal', message);
-  */
+function savaDirectory() {
+    var message = "";
+    var buttonToken = $("#ins_or_up_buttontoken").val();
+    message = transToServer(findBusUrlByButtonTonken(buttonToken, '', _dataSourceCode), getJson($('#insPage')));
+    oTable.showModal('modal', message);
 }
 
 function transToServer(url, jsonData) {

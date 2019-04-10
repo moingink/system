@@ -238,6 +238,8 @@ public class ButtonBase extends ButtonController {
 		/****************************** 修改主子表 *****************************************/
 		buttonMap.put("updateMDEF", new BtnForUpdateM());
 //		主数据关系 主子表删除
+
+
 		buttonMap.put("deleteMDEF", new BtnForDeleteM());
 		// 主数据关系映射节点按钮组_END
 	}

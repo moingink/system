@@ -30,17 +30,17 @@ public class ButForInsertTestDemo extends ButForInsert{
 		
 		String dataSourceCode = request.getParameter("dataSourceCode");
 		String childDataSourceCode = request.getParameter("childDataSourceCode");
-		String tabName = findTableNameByDataSourceCode(dataSourceCode);
-		String childTabName = findTableNameByDataSourceCode(childDataSourceCode);
+		//String tabName = findTableNameByDataSourceCode(dataSourceCode);
+		//String childTabName = findTableNameByDataSourceCode(childDataSourceCode);
 		JSONObject json = JSONObject.fromObject(request.getParameter("jsonData"));
 		String[] childJsonArray = request.getParameterValues("childJsonData");
 		String deleteIds = request.getParameter("deleteIds");
 		String parentFile = request.getParameter("parentFile");
 		
-		String id= "";
+		String id= null;
 		this.appendData(json,request);
 		try {
-			id= dcmsDAO.insertByTransfrom(tabName, json);
+			id= dcmsDAO.insertByTransfrom(dataSourceCode, json);
 		} catch (BussnissException e) {
 			e.printStackTrace();
 		}
@@ -51,7 +51,7 @@ public class ButForInsertTestDemo extends ButForInsert{
 				childJson.put(parentFile, id);
 				this.appendData(childJson,request);
 				try {
-					dcmsDAO.insertByTransfrom(childTabName, childJson);
+					dcmsDAO.insertByTransfrom(childDataSourceCode, childJson);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -61,7 +61,7 @@ public class ButForInsertTestDemo extends ButForInsert{
 			deleteIds = deleteIds.substring(0, deleteIds.length()-1);
 			SqlWhereEntity whereEntity = new SqlWhereEntity();
 			whereEntity.putWhere("ID", deleteIds, WhereEnum.IN);
-			return dcmsDAO.delete(childTabName, whereEntity);
+			return dcmsDAO.delete(childDataSourceCode, whereEntity);
 		}
 		String jsonMessage = "{\"message\":\"保存成功\"}";
 		this.ajaxWrite(jsonMessage, request, response);

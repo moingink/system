@@ -26,7 +26,7 @@
 </head>
 <%
 	String refColumn =request.getParameter("refColumn");
-	String metadata_id =request.getParameter("METADATA_ID");
+	//String metadata_id =request.getParameter("METADATA_ID");
 %>
 <style>
 	.fixed-table-container{
@@ -56,7 +56,9 @@
 		var url = context+'/reference?token='+'&cmd=';
 		var ref_dataSourceCode='';
 		var ref_column='';
-		var metadata_id= "<%=metadata_id%>";
+		//var metadata_id= ;
+		metadata_id = $('#LINK_TABLE_ID').val();
+		console.log(metadata_id);
 		$(function() {
 			ref_dataSourceCode =$("#ReferenceDataSourceCode").val();
 			bulidReferenceTable(ref_dataSourceCode);
@@ -82,7 +84,7 @@
 
 		function findReferencePageParam(dataSourceCode,isInit) {
 			var isRadio =$("#ReferenceIsRadio").val();
-			if(dataSourceCode=="CD_METADATA_DETAIL"&& metadata_id !="undefined" &&typeof(metadata_id) != undefined){
+			if(dataSourceCode.indexOf("CD_METADATA_DETAIL")!= -1 && metadata_id !="undefined" &&typeof(metadata_id) != undefined){
 				var pageParam = "&dataSourceCode="+dataSourceCode+"&isRadio="+isRadio+"&SEARCH-METADATA_ID="+metadata_id;
 			}else{
 				var pageParam = "&dataSourceCode="+dataSourceCode+"&isRadio="+isRadio;
@@ -93,7 +95,6 @@
 				//pageParam=pageParam+findExtParam(dataSourceCode);
 				pageParam=pageParam+bulidPageParam()+findExtParam(dataSourceCode);
 			}
-			
 			
 			console.log(pageParam);
 			return encodeURI(pageParam);

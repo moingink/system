@@ -107,31 +107,31 @@ window.onload = function(){
 	}
 	if($.isEmptyObject(fill) == true){
 		$.ajax({  
-            url : "/system/project/getOrag?proj_source_id="+ParentPKValue,  
-            dataType : "json",  
-            type : "GET",  
+            url : "/system/test/getDetailList?parent_id="+ParentPKValue,  
+            dataType : "json",
+            type : "POST",
             async: false,
             success : function(data) {
             		fill = data;
             }
-          });
-          $.ajax({  
-            url : "/system/project/proposalStatue?proj_source_id="+ParentPKValue,  
-            dataType : "json",  
-            type : "GET",  
-            async: false,
-            success : function(data) {
-            	if(data.length>0){
-            		bill_statue = data[0].BILL_STATUS;
-            		//bill_statue="3"
-            	}
-            }
-          });
+       });
+//           $.ajax({  
+//             url : "/system/project/proposalStatue?proj_source_id="+ParentPKValue,  
+//             dataType : "json",  
+//             type : "GET",  
+//             async: false,
+//             success : function(data) {
+//             	if(data.length>0){
+//             		bill_statue = data[0].BILL_STATUS;
+//             		//bill_statue="3"
+//             	}
+//             }
+//           });
 	}
 	
      	//如果有数据则回显数据
    		if($.isEmptyObject(fill) == false){
-   			buttonToken ="deleteForProJect";
+   			//buttonToken ="deleteForProJect";
    		}
   		for(var i=0;i<fill.length;i++){
 	  		//循环表格数据动态添加行列信息
@@ -157,7 +157,7 @@ window.onload = function(){
 			var role_value = fill[i].ROLE;
 			t5.innerHTML='<select id="'+ida+'" name="UrbanDepNo" class="form-control" style="border:none;"><option value="1">领导</option><option value="2">总、副总</option><option value="3">分管领导</option><option value="4">销售总监</option><option value="5">项目总监</option><option value="6">产品总监</option><option value="7">项目经理</option><option value="8">客户经理</option><option value="9">产品方案经理</option><option value="10">运营经理</option><option value="11">维护经理</option><option value="12">现场协调</option><option value="13">软件架构师</option><option value="14">系统架构师</option><option value="15">开发经理</option><option value="16">前台工程师</option><option value="17">后台工程师</option><option value="17">质量保障经理</option><option value="19">测试工程师</option></select>';
 			t6.innerHTML='<input type="text" class="form-control" style="border:none;" value="'+fill[i].EMAIL+'"/>';
-			t7.innerHTML='<input type="text" class="form-control" style="border:none;" value="'+fill[i].TEL+'"/><input type="hidden"    value="'+fill[i].USER_ID+'"/>';
+			t7.innerHTML='<input type="text" class="form-control" style="border:none;" value="'+fill[i].MOBILE+'"/><input type="hidden"    value="'+fill[i].USER_ID+'"/>';
 			var del=document.createElement("td");
 			if(bill_statue!=""){
 			 	if(bill_statue !="0" && bill_statue!= "7"){
@@ -362,6 +362,37 @@ function del(obj,id){
 	             }
     }
 }
+function jsonValue(){
+	var saveDate= [];
+	var data = [];
+	var j = {};
+ 	var  arr= document.getElementById('form').getElementsByTagName("*");
+ 	var l = arr.length;
+	for(var i=0;i<l;i++){
+	    if(arr[i].tagName && (arr[i].tagName=="INPUT" || arr[i].tagName=="SELECT")){
+	    	data.push(arr[i].value);
+	    }
+ 	}
+ 	//console.log(data);
+ 	for(var k=0; k*8 < data.length;k++){
+ 		var j = {};
+ 		j.PARENT_ID = ParentPKValue;
+		j.ID = data[k*8];
+  		j.STAFF_POST = data[k*8+1];
+	  	j.PERSON_TYPE = data[k*8+2];
+	  	j.NAME = data[k*8+3];
+	  	j.NUMBER = data[k*8+4];
+	  	j.EMAIL = data[k*8+5];
+	  	j.MOBILE = data[k*8+6];
+	  	
+	  	j.USER_ID = data[k*8+7];
+	  	j.DR='0';
+	  	j.PROJ_TYPE = '0';
+  		saveDate.push(j);
+  	}
+  	//console.log(saveDate);
+  	return saveDate;
+}
 function save(){
 	//如果是新增 获取行所有数据保存  如果是修改  记录修改行id和列数据json 批量调用后台
 	if(btnToken=="add"){
@@ -379,7 +410,7 @@ function iframeVerification(){
 	  		flag = false;
 	  		break;
 	  	}
-	  	if(checkPhone(saveDate[i]["TEL"])==false){
+	  	if(checkPhone(saveDate[i]["MOBILE"])==false){
 	  		message = "请填写正确手机号";
 	  		flag = false;
 	  		break;
@@ -390,19 +421,16 @@ function iframeVerification(){
 
 //获取指定form中的所有的<input>对象    
 function saveProjectOra() {    
-	console.log(getJson($('#tbody')));
 
-	//var message = transToServer(findBusUrlByButtonTonken(buttonToken,'&table='+pageCode+"&button="+buttonToken,''),dataMessage);
-	
-	//var saveDate = jsonValue();
-	
+	var saveDate = jsonValue();
+	console.log(saveDate);
 	for(var i=0;i<saveDate.length;i++){
 		if(checkEmail(saveDate[i]["EMAIL"])==false){
 	  		alert('请填写正确邮箱');
 	  		saveDate = [];
 	  		return false;
 	  	}
-	  	if(checkPhone(saveDate[i]["TEL"])==false){
+	  	if(checkPhone(saveDate[i]["MOBILE"])==false){
 	  		alert('请填写正确手机号');
 	  		saveDate = [];
 	  		return false;
@@ -412,32 +440,33 @@ function saveProjectOra() {
 	if(saveDate == false){
 		return ;
 	}
+	
   	var message ="";
+	buttonToken = "saveChildDemo";
   	//判断是否先删除在插入
-  	if(buttonToken=="deleteForProJect"){
+  	if(buttonToken=="saveChildDemo"){
 	  	var dataMessage =saveDate;
 	  	dataMessage=JSON.stringify(dataMessage);
-	  	message = transToServer(findBusUrlByButtonTonken(buttonToken,'&table='+pageCode,''),dataMessage);
+	  	//message = transToServer(findBusUrlByButtonTonken(buttonToken,'&table='+pageCode,''),dataMessage);
+	  	message = transToServer(findBusUrlByButtonTonken(buttonToken,'&table='+pageCode+"&button="+buttonToken,''),dataMessage);
   	}
-  	buttonToken = "addForProJect";
-  	if(buttonToken == "addForProJect"){
-  		var dataMessage =saveDate;
-  		dataMessage=JSON.stringify(dataMessage);
-  		message = transToServer(findBusUrlByButtonTonken(buttonToken,'&table='+pageCode+"&button="+buttonToken,''),dataMessage);
-  		//console.log(message);
-  	};
+//   	if(buttonToken == "addForProJect"){
+//   		var dataMessage =saveDate;
+//   		dataMessage=JSON.stringify(dataMessage);
+//   		message = transToServer(findBusUrlByButtonTonken(buttonToken,'&table='+pageCode+"&button="+buttonToken,''),dataMessage);
+//   		//console.log(message);
+//   	};
   	saveDate=[];
   	$("#ins_or_up_buttontoken").attr("disabled", true);
-  	if(message=="保存成功"){
+  	if(message=="操作成功"){
 	  	alert(message);
-	  	updateState ="update";
 	  	location.reload();
 		$("#ins_or_up_buttontoken").attr("disabled", true);
 		$("#add_button").attr("disabled", true);
   	}else{
 		alert(message);  	
   	}
-  	ajax异步调用保存组织职能信息
+  	
 }   
 
 

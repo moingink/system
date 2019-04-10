@@ -96,22 +96,25 @@ String ContextPath =request.getContextPath();
 			console.log($div);
 			var message ="";
 			var buttonToken=$("#ins_or_up_buttontoken").val();
-			if(pageCode=="PROJ_RELEASED_NLXM1"){
-				if(button =="add"){
-					$("#ID").val('<%= RmIdFactory.requestId("PROJ_RELEASED", 1)[0]%>');
-					buttonToken ="insertReleasedNL";
-				}
-				message = transToServer(findBusUrlByButtonTonken(buttonToken,'&table=PROJ_RELEASED',_dataSourceCode),getJson($div));
-			}else{
-				if(button=="add"){
-					$("#ID").val('<%= RmIdFactory.requestId("PROJ_RELEASED", 1)[0]%>');
-				}
-				message = transToServer(findBusUrlByButtonTonken(buttonToken,'',_dataSourceCode),getJson($div));
-			}
-			if(pageCode=="PROJ_RELEASED_NLXM1"){
-				if(message=="保存成功"){
-					location.reload();
-				}
+			console.log(buttonToken);
+// 			if(pageCode=="PROJ_RELEASED_NLXM1"){
+// 				if(button =="add"){
+<%-- 					$("#ID").val('<%= RmIdFactory.requestId("PROJ_RELEASED", 1)[0]%>'); --%>
+// 					buttonToken ="insertReleasedNL";
+// 				}
+// 				message = transToServer(findBusUrlByButtonTonken(buttonToken,'&table=PROJ_RELEASED',_dataSourceCode),getJson($div));
+// 			}else{
+// 				if(button=="add"){
+<%-- 					$("#ID").val('<%= RmIdFactory.requestId("PROJ_RELEASED", 1)[0]%>'); --%>
+// 				}
+// 				message = transToServer(findBusUrlByButtonTonken(buttonToken,'',_dataSourceCode),getJson($div));
+// 			}
+			if(buttonToken=="add"){
+				$("#ID").val('<%= RmIdFactory.requestId("PROJ_RELEASED", 1)[0]%>');
+	 		}
+			message = transToServer(findBusUrlByButtonTonken(buttonToken,'',_dataSourceCode),getJson($div));
+			if(message=="保存成功"){
+				location.reload();
 			}
 			setReadonlyByDiv($("#insPage input[type='text']"));
 			$("#ins_or_up_buttontoken").attr("disabled", true);

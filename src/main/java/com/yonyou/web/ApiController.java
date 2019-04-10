@@ -42,7 +42,8 @@ public class ApiController extends BaseController{
 			//请求JSON中未获取到服务编码
 			retJsonObject = ApiUtil.ApiJsonPut("000002");
 		} else {
-			String serviceCode = jsonData.getString("serviceCode");// 服务编码
+
+            String serviceCode = jsonData.getString("serviceCode");// 服务编码
 
 			if (serviceCode == null || serviceCode.length() != 13 || serviceCode.charAt(9) != '#') {
 				//服务编码格式错误

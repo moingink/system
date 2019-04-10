@@ -19,7 +19,7 @@
 		<div class="col-md-12">
 			<ul id="myTab" class="nav nav-tabs" style="width:1080px;height:42px;">
 				<li>
-					<btn id="show" class="btn btn-inverse" onclick="window.history.back(-1);" style="margin-top:4px;margin-right:5px;">
+					<btn id="show" class="btn btn-inverse" onclick="window.history.back(-1);" style="margin-top:4px;margin-right:5px;"> 
 						<span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>返回
 					</btn>
 				</li>
@@ -36,7 +36,7 @@
 			<div class="tab-content">
 
 				<div class="tab-pane fade in active" id='1'>
-					 <iframe src="maintainPage_test_demo.jsp?isHide=<%=request.getParameter("isHide")%>&pageCode=MD_PERSONNEL&pageName=项目基本信息&ParentPKField=PROJ_SOURCE_ID&ParentPKValue=<%=request.getParameter("ParentPKValue") %>&state=1&token=<%=request.getParameter("token") %>&state=1" scrolling="no" frameborder="0" width="99%" height="1380"  style="min-width:1050px;"></iframe>
+					 <iframe src="maintainPage_test_demo.jsp?isHide=<%=request.getParameter("isHide")%>&pageCode=MD_PERSONNEL&pageName=项目基本信息&ParentPKField=_ID&ParentPKValue=<%=request.getParameter("ParentPKValue") %>&state=1&token=<%=request.getParameter("token") %>&state=1" scrolling="no" frameborder="0" width="99%" height="1380"  style="min-width:1050px;"></iframe>
 				</div>
 <!-- 				<div class="tab-pane fade" id='3'> -->
 <%-- 				<iframe src="project/progressPlan.jsp?isHide=<%=request.getParameter("isHide")%>&pageCode=PROJ_PROGRESS_PHASE&pageName=进度计划&ParentPKField=PROJ_SOURCE_ID&ParentPKValue=<%=request.getParameter("ParentPKValue") %>&state=1" scrolling="no" frameborder="0" width="99%" height="1000"></iframe> --%>
@@ -46,7 +46,7 @@
 <%-- 					<iframe id="budget" src="project/budget.jsp?isHide=<%=request.getParameter("isHide")%>&pageCode=PROJ_BUDGET&pageName=项目预算&ParentPKField=PROJ_SOURCE_ID&ParentPKValue=<%=request.getParameter("ParentPKValue") %>&state=1" scrolling="no" frameborder="0" width="99%" height="1000"></iframe> --%>
 <!-- 				</div> -->
 				<div class="tab-pane fade " id='5'>
-					<iframe src="project/projectOrganization.jsp?isHide=<%=request.getParameter("isHide")%>&pageCode=PROJ_ORGANIZATION&pageName=组织架构&ParentPKField=PROJ_SOURCE_ID&ParentPKValue=<%=request.getParameter("ParentPKValue") %>&state=1"  scrolling="no" frameborder="0" width="99%" height="1000"></iframe>
+					<iframe src="project/projectOrganization.jsp?isHide=<%=request.getParameter("isHide")%>&pageCode=MD_PERSONNEL&pageName=组织架构&ParentPKField=PROJ_SOURCE_ID&ParentPKValue=<%=request.getParameter("ParentPKValue") %>&state=1"  scrolling="no" frameborder="0" width="99%" height="1000"></iframe>
 				</div>
 <!-- 				<div class="tab-pane fade " id='6'> -->
 <%-- 					<iframe id= "wbs" src="ganttmessage/wbs_gantts.jsp?isHide=<%=request.getParameter("isHide")%>&pageCode=PROJ_WBSINFO&pageName=wbs&ParentPKField=PROJ_SOURCE_ID&ParentPKValue=<%=request.getParameter("ParentPKValue") %>&state=1" scrolling="no" frameborder="0" width="99%" height="1000"></iframe> --%>

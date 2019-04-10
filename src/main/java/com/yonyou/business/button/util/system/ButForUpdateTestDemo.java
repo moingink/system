@@ -22,8 +22,8 @@ public class ButForUpdateTestDemo extends ButtonAbs {
 	protected Object execute(IBaseDao dcmsDAO, HttpServletRequest request,HttpServletResponse response) throws IOException, BussnissException {
 		String dataSourceCode = request.getParameter("dataSourceCode");
 		String childDataSourceCode = request.getParameter("childDataSourceCode");
-		String tabName = findTableNameByDataSourceCode(dataSourceCode);
-		String childTabName = findTableNameByDataSourceCode(childDataSourceCode);
+		//String tabName = findTableNameByDataSourceCode(dataSourceCode);
+		//String childTabName = findTableNameByDataSourceCode(childDataSourceCode);
 		JSONObject json = JSONObject.fromObject(request.getParameter("jsonData"));
 		String[] childJsonArray = request.getParameterValues("childJsonData");
 		String deleteIds = request.getParameter("deleteIds");
@@ -32,7 +32,7 @@ public class ButForUpdateTestDemo extends ButtonAbs {
 		SqlWhereEntity whereEntity =new SqlWhereEntity();
 		try {
 			this.appendWhereByIDs(json, whereEntity);
-			dcmsDAO.updateByTransfrom(tabName, json, whereEntity);
+			dcmsDAO.updateByTransfrom(dataSourceCode, json, whereEntity);
 		} catch (BussnissException e) {
 			e.printStackTrace();
 		}
@@ -43,7 +43,7 @@ public class ButForUpdateTestDemo extends ButtonAbs {
 					if(childJson.getString("ID").indexOf("add") == -1){
 						SqlWhereEntity where = new SqlWhereEntity();
 						where.putWhere("ID", childJson.getString("ID"), WhereEnum.EQUAL_INT);
-						dcmsDAO.updateByTransfrom(childTabName, childJson, where);
+						dcmsDAO.updateByTransfrom(childDataSourceCode, childJson, where);
 					}else{
 						childJson.put("ID", "");
 						childJson.put(parent_file, json.get("ID"));
@@ -56,7 +56,7 @@ public class ButForUpdateTestDemo extends ButtonAbs {
 							childJson.put(IPublicBusColumn.ORGANIZATION_ID, TOKEN_ENTITY.COMPANY.getCompany_id());
 							childJson.put(IPublicBusColumn.ORGANIZATION_NAME, TOKEN_ENTITY.COMPANY.getCompany_name());
 						}
-						dcmsDAO.insertByTransfrom(childTabName, childJson);
+						dcmsDAO.insertByTransfrom(childDataSourceCode, childJson);
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -67,7 +67,7 @@ public class ButForUpdateTestDemo extends ButtonAbs {
 			deleteIds = deleteIds.substring(0, deleteIds.length()-1);
 			SqlWhereEntity whereEntity1 = new SqlWhereEntity();
 			whereEntity1.putWhere("ID", deleteIds, WhereEnum.IN);
-			dcmsDAO.delete(childTabName, whereEntity1);
+			dcmsDAO.delete(childDataSourceCode, whereEntity1);
 		}
 		String jsonMessage = "{\"message\":\"修改成功\"}";
 		this.ajaxWrite(jsonMessage, request, response);

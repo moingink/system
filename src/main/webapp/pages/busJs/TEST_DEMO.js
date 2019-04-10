@@ -22,7 +22,7 @@ function ref_write_json(rejsonArray){
 
 // 点击删除按钮做判断其他函数
 
-function deleteRowCheck(){
+function deleteRowCheck(t){
 	var selected = JSON.parse(getSelections());
 	if(selected.length != 1){
 		oTable.showModal('modal', "请选择一条数据进行操作");
@@ -63,7 +63,7 @@ function upload(){
 }
 //主字表模板
 function setUpAdd(t){
-	initDetailTable('001');
+	initDetailTable('1');
 	$("#insert,#update,#delete").removeAttr('disabled');
 	$("#insPage").prev().prev().find('button:eq(0)').removeAttr('disabled');
 }
@@ -73,7 +73,9 @@ function setUpAdd(t){
 function initDetailTable(parentId){
 	console.log('主子表');
 	initDetailTableList();
-	getRecord(parentId);
+	if(parentId!='1'){
+		getRecord(parentId);
+	}
 	bulidListPage($("#detailTable"),'MD_PERSONNEL',pageParamFormat("PARENT_ID = '"+parentId+"'"));
 	initDetailDiv();
 	bulidMaintainPage($('#detailDiv'),"MD_PERSONNEL",'');
@@ -234,7 +236,7 @@ function savaByQuery(t,_dataSourceCode,$div){
 	var buttonToken = $("#ins_or_up_buttontoken").val();
 	if(buttonToken == 'addTestDemo'){
 		//新增
-		$('#ID').val(getId());//ID
+		//$('#ID').val(getId());//ID
 	}
 	console.log(delete getJson($('#insPage'))["USER_NAME"]);
 	var message = transToServer(findBusUrlByButtonTonken(buttonToken, '', _dataSourceCode), getJson($('#insPage')), childJsonData, "MD_PERSONNEL", deleteIds,"PARENT_ID");

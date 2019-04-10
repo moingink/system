@@ -23,12 +23,14 @@ import com.yonyou.util.sql.SqlWhereEntity;
  * @author changjr
  *
  */
+@Component
 public class BtnForUpdateM extends ButtonAbs {
 	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional
 	protected Object execute(IBaseDao dcmsDAO, HttpServletRequest request, HttpServletResponse response)
 			throws IOException, BussnissException {
-		
+
 		String dataSourceCode = request.getParameter("dataSourceCode");
 		String childDataSourceCode = request.getParameter("childDataSourceCode");
 		String tabName = findTableNameByDataSourceCode(dataSourceCode);
@@ -83,7 +85,6 @@ public class BtnForUpdateM extends ButtonAbs {
 		return null;
 	}
 
-	
 	@Override
 	protected boolean befortOnClick(IBaseDao dcmsDAO, HttpServletRequest request, HttpServletResponse response) {
 		return false;

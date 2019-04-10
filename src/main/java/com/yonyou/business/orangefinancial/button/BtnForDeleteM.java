@@ -18,8 +18,9 @@ import com.yonyou.util.sql.SqlWhereEntity;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-
+@Component
 public class BtnForDeleteM extends ButForPhysicalDelete{
+	@Transactional
 	@Override
 	protected Object execute(IBaseDao dcmsDAO, HttpServletRequest request,
 			HttpServletResponse response) throws IOException, BussnissException {

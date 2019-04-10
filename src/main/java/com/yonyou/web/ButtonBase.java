@@ -78,9 +78,11 @@ import com.yonyou.business.button.util.ButForSelect;
 import com.yonyou.business.button.util.ButForUpdate;
 import com.yonyou.business.button.util.ButForUpdateStatus;
 import com.yonyou.business.button.util.IncomeExpor;
-import com.yonyou.business.button.util.system.ButForInsertOrUpdate;
 import com.yonyou.business.button.util.system.ButForInsertTestDemo;
 import com.yonyou.business.button.util.system.ButForUpdateTestDemo;
+import com.yonyou.business.orangefinancial.button.BtnForDeleteM;
+import com.yonyou.business.orangefinancial.button.BtnForInsertM;
+import com.yonyou.business.orangefinancial.button.BtnForUpdateM;
 
 
 @RestController
@@ -213,7 +215,7 @@ public class ButtonBase extends ButtonController {
 		buttonMap.put("updateTestDemo", new ButForUpdateTestDemo());
 		
 		//一主多子 子表保存
-		buttonMap.put("saveChildDemo", new ButForInsertOrUpdate());
+//		buttonMap.put("saveChildDemo", new ButForInsertOrUpdate());
 		
 		//
         //  测阿萨v发v
@@ -226,10 +228,18 @@ public class ButtonBase extends ButtonController {
 
         /******************************wzl  开始*****************************************/
 
-        buttonMap.put("ConnectTest", new ButForConnectTest());
-        buttonMap.put("DirectoryTest", new ButForDirectoryTest());
+//        buttonMap.put("ConnectTest", new ButForConnectTest());
+//        buttonMap.put("DirectoryTest", new ButForDirectoryTest());
 
         /******************************wzl  结束*****************************************/
+		// 主数据关系映射节点按钮组_BEGIN
+		/****************************** 新增主子表 *****************************************/
+		buttonMap.put("addMDEF", new BtnForInsertM());
+		/****************************** 修改主子表 *****************************************/
+		buttonMap.put("updateMDEF", new BtnForUpdateM());
+//		主数据关系 主子表删除
+		buttonMap.put("deleteMDEF", new BtnForDeleteM());
+		// 主数据关系映射节点按钮组_END
 	}
 	
 	@Override

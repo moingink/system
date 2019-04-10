@@ -5,7 +5,7 @@
 	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jpa="http://www.springframework.org/schema/data/jpa" 
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
 		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
@@ -129,7 +129,8 @@
 		"insert" or "update", and to PROPAGATION_REQUIRED with read-only hint
 		for all other methods.  timeout="600000" propagation="NOT_SUPPORTED" 
 	-->
-	<tx:advice id="txAdvice" transaction-manager="transactionManagerForJdbc">
+		<!-- 删除基于xml的事物配置方式 改成基于注解的方法 by changjr3 -->
+	<!-- <tx:advice id="txAdvice" transaction-manager="transactionManagerForJdbc">
 		<tx:attributes>
 			<tx:method name="insert*"/>
 			<tx:method name="update*"/>
@@ -139,11 +140,10 @@
 			<tx:method name="*" read-only="true" />
 		</tx:attributes>
 	</tx:advice>
-	
 	<aop:config proxy-target-class="true">
 		<aop:advisor pointcut="execution(* com.yonyou.util.service.BaseService.*(..))" 
 							 advice-ref="txAdvice" order="0"/>
-	</aop:config>
+	</aop:config> -->
 	
 	
    

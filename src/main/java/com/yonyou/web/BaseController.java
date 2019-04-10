@@ -555,6 +555,7 @@ public class BaseController extends BusFlowAbs implements DataSourceCodeConstant
 		PrintWriter out = response.getWriter();
 		
 		String dataSourceCode = request.getParameter("dataSourceCode");
+		@SuppressWarnings("unused")
 		SqlTableUtil sqlEntity = DataSourceUtil.dataSourceToSQL(dataSourceCode);
 		String jsonMessage = PageUtil.findPageHtml(dataSourceCode, PageUtil.PAGE_TYPE_FOR_TABLE);
 		

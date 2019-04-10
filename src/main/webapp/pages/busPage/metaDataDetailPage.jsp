@@ -120,6 +120,7 @@
 			}
 
 			function bulidTable() {
+				debugger;
 				oTable.initQueryParam($queryParam, paramurl + findPageParam());
 				oTable.initCols($table, colurl + findPageParam(), qusurl + findPageParam());
 				oTable.initMaintainCols($inspage, maintainurl + findPageParam());

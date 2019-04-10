@@ -78,9 +78,11 @@ import com.yonyou.business.button.util.ButForSelect;
 import com.yonyou.business.button.util.ButForUpdate;
 import com.yonyou.business.button.util.ButForUpdateStatus;
 import com.yonyou.business.button.util.IncomeExpor;
-import com.yonyou.business.button.util.system.ButForInsertOrUpdate;
 import com.yonyou.business.button.util.system.ButForInsertTestDemo;
 import com.yonyou.business.button.util.system.ButForUpdateTestDemo;
+import com.yonyou.business.orangefinancial.button.BtnForDeleteM;
+import com.yonyou.business.orangefinancial.button.BtnForInsertM;
+import com.yonyou.business.orangefinancial.button.BtnForUpdateM;
 
 
 @RestController

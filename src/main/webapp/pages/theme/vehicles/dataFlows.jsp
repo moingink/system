@@ -15,8 +15,6 @@
 		<link href="<%=request.getContextPath() %>/vendor/bootstrap3-editable/css/bootstrap-editable.css"> --%>
 		<link rel="stylesheet" type="text/css"
 	href="<%=ContextPath%>/pages/theme/vehicles/css/dataFlow_b.css">
-<script type="text/javascript"
-	src="<%=ContextPath%>/pages/theme/vehicles/js/dataFlow_b.js"></script>
 	</head>
 	<body style="background-color: rgb(240,240,241)">
 
@@ -131,6 +129,7 @@
 					<br>
 					<button type="button" class="btn btn-info" onclick="enable()">编辑（table
 						Status）</button>
+					<button type="button" class="btn btn-warning">数据预警</button>
 					<table id="flow_b"
 						class="table table-bordered table-hover table-striped">
 						<thead id="thead_flow_b">
@@ -180,7 +179,7 @@
 													data-toggle="tooltip" placeholder="名称" title="名称">
 											</div>
 											<div class="col-md-2 col-xs-2 col-sm-2">
-												<button type="submit" class="btn btn-success" style="float:left">搜索</button>
+												<button type="button" onclick="search()" class="btn btn-success" style="float:left">搜索</button>
 											</div>
 										</div>
 										<br>
@@ -205,6 +204,8 @@
 	</body>
 	<jsp:include page="../../../include/public.jsp"></jsp:include>
 	<jsp:include page="../../buttonjs.jsp"></jsp:include>
+	<script type="text/javascript"
+	src="<%=ContextPath%>/pages/theme/vehicles/js/dataFlow_b.js"></script>
 	<link rel="stylesheet" type="text/css" href="<%= ThemePath.findPath(request, ThemePath.SUB_SYSTEM_CSS)%>">
 	<script type="text/javascript">
 		var current_row="";
@@ -234,7 +235,6 @@
 
 					$("#bulidPage_detail").slideDown(1100);
 					$("#bulidTable").slideUp();
-					data_str.splice(0, data_str.length);
 					data_detail.splice(0, data_detail.length);
 					flow_detail("BS_DATA_FLOW_B", flow_id);
 					$("#thead_flow_b").html("");

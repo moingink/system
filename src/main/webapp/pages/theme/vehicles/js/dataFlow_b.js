@@ -146,9 +146,11 @@ function nextRow(row){
 function enable(){
 	$(".Enable").attr("readonly",false);
 }
-function initTab($e, code) {
+function initTab($e, code,name) {
+		$("#flow_b_table").bootstrapTable('destroy'); 
+		var str=name==null?null:"SEARCH-FTP_CONFIG_NAME="+name
 		$e.bootstrapTable({
-			url : "/system/reference?token=&cmd=init&dataSourceCode=" + code+"&isRadio=0", //请求后台的URL（*）
+			url : "/system/reference?token=&cmd=init&dataSourceCode=" + code+"&isRadio=0&"+str, //请求后台的URL（*）
 			method : 'get', //请求方式（*）
 			toolbar : '#toolbar', //工具按钮用哪个容器
 			striped : true, //是否显示行间隔色
@@ -182,6 +184,7 @@ function initTab($e, code) {
 			url : "/system/reference?token=&cmd=queryColumns&dataSourceCode=" + code+"&isRadio=0",
 			dataType : "text",
 			success : function(data) {
+				data_str.splice(0, data_str.length);
 				data_str.push(JSON.parse(data));
 				for (var i = 0; i < data_str.length; i++) {
 					data_str[i][i].formatter = "";
@@ -190,8 +193,15 @@ function initTab($e, code) {
 		});
 	} 
 function focusInput(row){
+	if($(row).attr("readonly")=="readonly"){
+		return;
+	}
 	current_row=$(row).parent().parent();
 	$("#ReferenceModal_detail").modal("show");
 	initCol("REF_BS_FTP_CONFIG")
-	initTab($("#flow_b_table"),"REF_BS_FTP_CONFIG");
+	initTab($("#flow_b_table"),"REF_BS_FTP_CONFIG",null);
+}
+function search(){
+	initCol("REF_BS_FTP_CONFIG")
+	initTab($("#flow_b_table"),"REF_BS_FTP_CONFIG",$("#name_flow_b").val());
 }

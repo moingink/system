@@ -81,9 +81,6 @@ import com.yonyou.business.button.util.IncomeExpor;
 import com.yonyou.business.button.util.system.ButForInsertOrUpdate;
 import com.yonyou.business.button.util.system.ButForInsertTestDemo;
 import com.yonyou.business.button.util.system.ButForUpdateTestDemo;
-import com.yonyou.business.orangefinancial.button.BtnForDeleteM;
-import com.yonyou.business.orangefinancial.button.BtnForInsertM;
-import com.yonyou.business.orangefinancial.button.BtnForUpdateM;
 
 
 @RestController
@@ -216,7 +213,7 @@ public class ButtonBase extends ButtonController {
 		buttonMap.put("updateTestDemo", new ButForUpdateTestDemo());
 		
 		//一主多子 子表保存
-		buttonMap.put("saveChildDemo", new ButForInsertOrUpdate());
+//		buttonMap.put("saveChildDemo", new ButForInsertOrUpdate());
 		
 		//
         //  测阿萨v发v

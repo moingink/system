@@ -50,7 +50,7 @@ function doStyle(t){
 		oTable.showModal('modal', "请选择一条数据进行操作");
 		return;
 	}
-	window.location.href=context+"/pages/singleTableModify.jsp?pageCode=BS_MD_STYLE&pageName=页面样式维护&pid="+selected[0]['ID']+"&mate=BASE_MAINDATA_DEF&token="+token;
+	window.location.href=context+"/pages/singleTableModify.jsp?pageCode=BS_MD_STYLE&pageName=页面样式维护&pid="+selected[0]['ID']+"&mate=BASE_MAINDATA_DEF&mate_b=BS_MD_DEF_B&token="+token;
 	
 }
 function ref_end(){

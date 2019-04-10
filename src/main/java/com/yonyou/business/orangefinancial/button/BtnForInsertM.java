@@ -19,18 +19,18 @@ import net.sf.json.JSONObject;
 
 /**
  * 2019年4月2日09:32:09
- * @author changjr
- * 主数据关系映射节点 保存按钮
+ * 
+ * @author changjr 主数据关系映射节点 保存按钮
  */
-public class BtnForInsertM extends ButForInsert{
+@Component
+public class BtnForInsertM extends ButForInsert {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	protected Object execute(IBaseDao dcmsDAO, HttpServletRequest request,
-			HttpServletResponse response) throws IOException, BussnissException {
-		
-		
-		
+	@Transactional
+	protected Object execute(IBaseDao dcmsDAO, HttpServletRequest request, HttpServletResponse response)
+			throws IOException, BussnissException {
+
 		String dataSourceCode = request.getParameter("dataSourceCode");
 		String childDataSourceCode = request.getParameter("childDataSourceCode");
 		String tabName = findTableNameByDataSourceCode(dataSourceCode);
@@ -38,19 +38,19 @@ public class BtnForInsertM extends ButForInsert{
 		JSONObject json = JSONObject.fromObject(request.getParameter("jsonData"));
 		String[] childJsonArray = request.getParameterValues("childJsonData");
 		String deleteIds = request.getParameter("deleteIds");
-		String id= "";
-		this.appendData(json,request);
+		String id = "";
+		this.appendData(json, request);
 		try {
-			id= dcmsDAO.insertByTransfrom(tabName, json);
+			id = dcmsDAO.insertByTransfrom(tabName, json);
 		} catch (BussnissException e) {
 			e.printStackTrace();
 		}
-		if(childJsonArray != null){
-			for(int i = 0;i < childJsonArray.length;i++){
+		if (childJsonArray != null) {
+			for (int i = 0; i < childJsonArray.length; i++) {
 				JSONObject childJson = JSONObject.fromObject(childJsonArray[i]);
 				childJson.put("ID", "");
 				childJson.put("PID", id);
-				this.appendData(childJson,request);
+				this.appendData(childJson, request);
 				try {
 					dcmsDAO.insertByTransfrom(childTabName, childJson);
 				} catch (Exception e) {
@@ -58,9 +58,8 @@ public class BtnForInsertM extends ButForInsert{
 				}
 			}
 		}
-		int i=1/0;
-		if(StringUtils.isNotBlank(deleteIds)){
-			deleteIds = deleteIds.substring(0, deleteIds.length()-1);
+		if (StringUtils.isNotBlank(deleteIds)) {
+			deleteIds = deleteIds.substring(0, deleteIds.length() - 1);
 			SqlWhereEntity whereEntity = new SqlWhereEntity();
 			whereEntity.putWhere("ID", deleteIds, WhereEnum.IN);
 			return dcmsDAO.delete(childTabName, whereEntity);
@@ -69,19 +68,17 @@ public class BtnForInsertM extends ButForInsert{
 		this.ajaxWrite(jsonMessage, request, response);
 		return null;
 	}
-	
+
 	@Override
-	protected boolean befortOnClick(IBaseDao dcmsDAO, HttpServletRequest request,
-			HttpServletResponse response) {
+	protected boolean befortOnClick(IBaseDao dcmsDAO, HttpServletRequest request, HttpServletResponse response) {
 		// TODO 自动生成的方法存根
 		return false;
 	}
 
 	@Override
-	protected void afterOnClick(IBaseDao dcmsDAO, HttpServletRequest request,
-			HttpServletResponse response) {
+	protected void afterOnClick(IBaseDao dcmsDAO, HttpServletRequest request, HttpServletResponse response) {
 		// TODO 自动生成的方法存根
-		//this.handleTask(IBusFlowOperationType.HANDLE_TASK, request);
+		// this.handleTask(IBusFlowOperationType.HANDLE_TASK, request);
 	}
 
 }

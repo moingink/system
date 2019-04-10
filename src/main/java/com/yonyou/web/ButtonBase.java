@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yonyou.business.button.util.system.ButForConnectTest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -77,6 +78,7 @@ import com.yonyou.business.button.util.ButForSelect;
 import com.yonyou.business.button.util.ButForUpdate;
 import com.yonyou.business.button.util.ButForUpdateStatus;
 import com.yonyou.business.button.util.IncomeExpor;
+import com.yonyou.business.button.util.system.ButForInsertOrUpdate;
 import com.yonyou.business.button.util.system.ButForInsertTestDemo;
 import com.yonyou.business.button.util.system.ButForUpdateTestDemo;
 import com.yonyou.business.orangefinancial.button.BtnForDeleteM;
@@ -153,58 +155,84 @@ public class ButtonBase extends ButtonController {
 		buttonMap.put("passwordStrategy", new UserButForPasswordStrategy());//角色设置
 		/*************************利用存储过程转化并插入子表*****************/
 		buttonMap.put("procedure", new ButForProcedure());
-
-		/************************* 物理新增、修改元数据字段 *****************/
+		
+		/*************************物理新增、修改元数据字段*****************/
 		buttonMap.put("metadataPhyIns", new ButForMetadataPhyIns());
 		buttonMap.put("metadataPhyUpd", new ButForMetadataPhyUpd());
 		
-		/****************************** 公司 管理 *****************************************/
+		/*************************图片新增，修改（轮播图）*****************************/
+		buttonMap.put("addPic", new ButForAddPic());//新增
+		
+		/*************************主题新增，修改（轮播图）*****************************/
+		buttonMap.put("addThe", new ButForAddTheme());//新增
+		
+		/*************************角色主题新增（轮播图）*****************************/
+		buttonMap.put("addRoleTheme", new ButForAddRoleTheme());//新增
+		
+		/*************************自定义菜单*****************************/
+		buttonMap.put("addM", new ButForAddCuMenu());//新增
+		buttonMap.put("resetM", new ButForResetCuMenu());//重置
+		buttonMap.put("deleteM", new ButForDeleteCuMenu());//删除
+		
+		/*************************任务按钮*****************************/
+		buttonMap.put("jobInsert", new ButForJobInsert()); //任务新增
+		buttonMap.put("jobDelete", new ButForJobDelete()); //任务修改
+		buttonMap.put("jobStateUp", new ButForJobStateUp()); //任务启动
+		buttonMap.put("jobStop", new ButForJobStop()); //任务关闭
+		
+		/******************************公司 管理*****************************************/
 		buttonMap.put("addCom", new ButForInsertCompany());
-		/****************************** 部门 管理 *****************************************/
+		/******************************部门 管理*****************************************/
 		buttonMap.put("addDept", new ButForInsertDepartment());
-
-		/****************************** 通知 *******************************************/
+		
+		/******************************通知*******************************************/
 		buttonMap.put("send", new NotifyButForPlan());
-		buttonMap.put("addByNotity", new NotifyButForInsert());// 新增
-		buttonMap.put("updateByNotity", new NotifyButForUpdate());// 修改
-
-		buttonMap.put("addByNoticeManage", new NoticeManageButForInsert());// 新增
-		buttonMap.put("updateByNoticeManage", new NoticeManageButForUpdate());// 修改
-		buttonMap.put("deleteByNoticeManage", new NoticeManageButForDelete());// 修改
-
-		/****************************** 审批 *****************************************/
+		buttonMap.put("addByNotity", 	new NotifyButForInsert());//新增
+		buttonMap.put("updateByNotity", new NotifyButForUpdate());//修改
+		
+		buttonMap.put("addByNoticeManage", 	new NoticeManageButForInsert());//新增
+		buttonMap.put("updateByNoticeManage", new NoticeManageButForUpdate());//修改
+		buttonMap.put("deleteByNoticeManage", new NoticeManageButForDelete());//修改
+		
+		/******************************审批*****************************************/
 		buttonMap.put("audit", new ButForAudit());
-		/******************************
-		 * 修改表字段状态
-		 *****************************************/
+		/******************************修改表字段状态*****************************************/
 		buttonMap.put("updateStatus", new ButForUpdateStatus());
-		/******************************
-		 * 角色数据权限新增
-		 *****************************************/
+		/******************************角色数据权限新增*****************************************/
 		buttonMap.put("addForRoleDataAuth", new ButForInsertForRoleDataAuth());
-
-		/******************************
-		 * Excel导出
-		 *****************************************/
+		
+		/******************************Excel导出*****************************************/
 		buttonMap.put("zw_income_export", new IncomeExpor());
-
-		/******************************
-		 * 业务流请求接口
-		 *****************************************/
+		
+		/******************************业务流请求接口*****************************************/
 		buttonMap.put("busFlow", new ButForBusFlow());
-
-		/****************************** 新增主子表 *****************************************/
+		
+		
+		
+		/******************************新增主子表*****************************************/
 		buttonMap.put("addTestDemo", new ButForInsertTestDemo());
-		/****************************** 修改主子表 *****************************************/
-
 		/******************************修改主子表*****************************************/
 
-
 		buttonMap.put("updateTestDemo", new ButForUpdateTestDemo());
-
+		
+		//一主多子 子表保存
+		buttonMap.put("saveChildDemo", new ButForInsertOrUpdate());
+		
+		//
+        //  测阿萨v发v
+        //方式通过深入体会b
+		//测试冲突类解决办法
+		//测试冲突类解决办法
+		//测试文件冲突解决办法 #  阿斯顿
 		/******************************打印预览*****************************************/
 		buttonMap.put("printPreview", new ButForPrintPreview());
 
+        /******************************wzl  开始*****************************************/
+
+//        buttonMap.put("ConnectTest", new ButForConnectTest());
+//        buttonMap.put("DirectoryTest", new ButForDirectoryTest());
+
+        /******************************wzl  结束*****************************************/
 		// 主数据关系映射节点按钮组_BEGIN
 		/****************************** 新增主子表 *****************************************/
 		buttonMap.put("addMDEF", new BtnForInsertM());
@@ -220,11 +248,14 @@ public class ButtonBase extends ButtonController {
 		// TODO 自动生成的方法存根
 		return buttonMap;
 	}
-
+	
+	
 	@Override
-	public void init(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void init(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
 		// TODO 自动生成的方法存根
 		super.init(request, response);
 	}
 
+	
 }

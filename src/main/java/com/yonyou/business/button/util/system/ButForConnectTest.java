@@ -1,21 +1,20 @@
 package com.yonyou.business.button.util.system;
 
-//import com.alibaba.fastjson.JSONObject;
-
-import com.yonyou.business.button.ButtonAbs;
-import com.yonyou.util.BussnissException;
-import com.yonyou.util.jdbc.IBaseDao;
+import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 import org.apache.commons.net.ftp.FTPClient;
-import org.apache.commons.net.ftp.FTPFile;
+import org.apache.commons.net.ftp.FTPReply;
+
+//import com.alibaba.fastjson.JSONObject;
+
+import com.yonyou.business.button.ButtonAbs;
+import com.yonyou.util.jdbc.IBaseDao;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import org.apache.commons.net.ftp.FTPReply;
 
 
 public class ButForConnectTest extends ButtonAbs {

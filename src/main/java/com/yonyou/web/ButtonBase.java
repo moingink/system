@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.yonyou.business.button.util.system.ButForConnectTest;
+//import com.yonyou.business.button.util.system.ButForConnectTest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -78,11 +78,9 @@ import com.yonyou.business.button.util.ButForSelect;
 import com.yonyou.business.button.util.ButForUpdate;
 import com.yonyou.business.button.util.ButForUpdateStatus;
 import com.yonyou.business.button.util.IncomeExpor;
+//import com.yonyou.business.button.util.system.ButForInsertOrUpdate;
 import com.yonyou.business.button.util.system.ButForInsertTestDemo;
 import com.yonyou.business.button.util.system.ButForUpdateTestDemo;
-import com.yonyou.business.orangefinancial.button.BtnForDeleteM;
-import com.yonyou.business.orangefinancial.button.BtnForInsertM;
-import com.yonyou.business.orangefinancial.button.BtnForUpdateM;
 
 
 @RestController
@@ -232,14 +230,6 @@ public class ButtonBase extends ButtonController {
 //        buttonMap.put("DirectoryTest", new ButForDirectoryTest());
 
         /******************************wzl  结束*****************************************/
-		// 主数据关系映射节点按钮组_BEGIN
-		/****************************** 新增主子表 *****************************************/
-		buttonMap.put("addMDEF", new BtnForInsertM());
-		/****************************** 修改主子表 *****************************************/
-		buttonMap.put("updateMDEF", new BtnForUpdateM());
-//		主数据关系 主子表删除
-		buttonMap.put("deleteMDEF", new BtnForDeleteM());
-		// 主数据关系映射节点按钮组_END
 	}
 	
 	@Override

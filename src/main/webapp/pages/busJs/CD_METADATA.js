@@ -7,7 +7,8 @@ buttonJson =[
              {name:'存储过程',fun:'tableProc(this)',buttonToken:'procedure'},
              {name:'建表',fun:'creaeTable(this)',buttonToken:'createTable'},
              {name:'导入',fun:'upload(this)',buttonToken:'upload'},
-             {name:'导出',fun:'upload(this)',buttonToken:'upload'}
+             {name:'导出',fun:'upload(this)',buttonToken:'upload'},
+             {name:'复制',fun:'copy(this)',buttonToken:'copy'}
 			];
 
 //导入初始化 必须 否则页面功能有问题
@@ -15,7 +16,27 @@ $(function(){
 	var fileInput=new FileInput();
 	fileInput.init();
 });
-
+function copy(t){
+	//辅助元数据功能
+	//获取选中行数据 调用后台
+	var id=(JSON.parse(getSelections())[0]["ID"]);
+	var selected = JSON.parse(getSelections());
+	if(selected.length != 1){
+		oTable.showModal('modal', "请选择一条数据进行操作");
+		return;
+	}
+	$.ajax({
+		async: false,
+        type: "POST",
+        url: context+"/metaData?copy",
+        data: {"id":id},
+        dataType: "json",
+        success: function(data){
+        	
+        }
+    });
+	
+}
 function view(){
 	
 	//查看子表相关配置

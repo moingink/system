@@ -31,7 +31,7 @@ var TableInit = function() {
 			uniqueId : "ID", // 每一行的唯一标识，一般为主键列
 			showToggle : false, // 是否显示详细视图和列表视图的切换按钮
 			cardView : false, // 是否显示详细视图
-			detailView : true, // 是否显示父子表
+			detailView : false, // 是否显示父子表
 			showExport: false,                     //是否显示导出
 	        exportDataType: "selected",              //basic', 'all', 'selected'.
 			columns : oTableInit.columns[$e.attr("id")],
@@ -155,7 +155,7 @@ var TableInit = function() {
 				//console.info("queryParamHtml---"+JSON.stringify(data));
 				}
 			});
-    	//$e.append(queryParamHtml);
+    	$e.append(queryParamHtml);
     };
     
     //初始化维护（新增&修改）页面

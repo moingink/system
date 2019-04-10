@@ -56,7 +56,7 @@ var userName = '<%=tokenEntity.USER.getName()%>';
 
 var cumaEmail = '<%=tokenEntity.USER.getEmail()%>';
 var cumaPhone = '<%=tokenEntity.USER.getCustom3()%>';
-
+var metadata_id='';
 var companyName ='<%= tokenEntity.COMPANY.getCompany_name()%>';
 var companyNameID ='<%= tokenEntity.COMPANY.getCompany_id()%>';
 var roleId = '<%= tokenEntity.ROLE==null?"":tokenEntity.ROLE.getRoleId()%>';
@@ -67,7 +67,7 @@ var ParentId ='ID';
 var ParentIded ='CON_ID';
 var ParentPKField='<%=request.getParameter("ParentPKField")!=null?request.getParameter("ParentPKField"):""%>';
 var ParentPKValue='<%=request.getParameter("ParentPKValue")!=null?request.getParameter("ParentPKValue"):""%>';
-
+//var metadata_id = '';
 var _query_param='';
 if(ParentPKField!=null&&ParentPKField.length>0){
 	_query_param =pageParamFormat(ParentPKField+" = "+ParentPKValue);

@@ -11,6 +11,7 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yonyou.business.MetaDataUtil;
@@ -60,7 +61,15 @@ public class MetaDataController extends BaseController {
 		MetaDataUtil.clear();
 		
 	}
-	
+	//复制元数据主子表
+	@RequestMapping(value = "copy", method = RequestMethod.POST)
+	public String getProductList(HttpServletRequest request, HttpServletResponse response) throws IOException, BussnissException  {
+		
+		String  id = request.getParameter("id");
+		//先查询  去掉主键
+		
+		return "";
+	}
 	@Override
 	public void editRow(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		

@@ -9,13 +9,13 @@
 	margin-top:10px;
 }
 
-.input-box-toggle {
+/* .input-box-toggle {
     text-align: center;
     color: #32adfa;
     cursor: pointer;
 }
 .button-menu {
-    /* border: 1px solid #dedede; */
+    border: 1px solid #dedede;
     background-color: #fff;
     padding: 20px 20px;
 }
@@ -45,4 +45,4 @@
 }
 .button-menu .button-group.de .img {
     background: url(../../../images/del.png) no-repeat;
-}
+} */

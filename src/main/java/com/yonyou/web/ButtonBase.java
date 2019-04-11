@@ -79,6 +79,7 @@ import com.yonyou.business.button.util.ButForUpdate;
 import com.yonyou.business.button.util.ButForUpdateStatus;
 import com.yonyou.business.button.util.IncomeExpor;
 import com.yonyou.business.button.util.system.ButForInsertTestDemo;
+import com.yonyou.business.button.util.system.ButForUpdateMetaData;
 import com.yonyou.business.button.util.system.ButForUpdateTestDemo;
 import com.yonyou.business.orangefinancial.button.BtnForDeleteM;
 import com.yonyou.business.orangefinancial.button.BtnForInsertM;
@@ -214,6 +215,9 @@ public class ButtonBase extends ButtonController {
 
 		buttonMap.put("updateTestDemo", new ButForUpdateTestDemo());
 		
+		/////
+		buttonMap.put("updateMetadata", new ButForUpdateMetaData());
+		
 		//一主多子 子表保存
 //		buttonMap.put("saveChildDemo", new ButForInsertOrUpdate());
 		
@@ -228,8 +232,8 @@ public class ButtonBase extends ButtonController {
 
         /******************************wzl  开始*****************************************/
 
-//        buttonMap.put("ConnectTest", new ButForConnectTest());
-//        buttonMap.put("DirectoryTest", new ButForDirectoryTest());
+        buttonMap.put("ConnectTest", new ButForConnectTest());
+        buttonMap.put("DirectoryTest", new ButForDirectoryTest());
 
         /******************************wzl  结束*****************************************/
 		// 主数据关系映射节点按钮组_BEGIN

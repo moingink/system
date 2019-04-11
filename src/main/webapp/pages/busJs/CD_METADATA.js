@@ -8,7 +8,8 @@ buttonJson =[
              {name:'建表',fun:'creaeTable(this)',buttonToken:'createTable'},
              {name:'导入',fun:'upload(this)',buttonToken:'upload'},
              {name:'导出',fun:'upload(this)',buttonToken:'upload'},
-             {name:'复制',fun:'copy(this)',buttonToken:'copy'}
+             {name:'复制',fun:'copy(this)',buttonToken:'copy'},
+             {name:'快速创建',fun:'quilkCreate(this)',buttonToken:'quilkCreate'}
 			];
 
 //导入初始化 必须 否则页面功能有问题
@@ -16,6 +17,18 @@ $(function(){
 	var fileInput=new FileInput();
 	fileInput.init();
 });
+function quilkCreate(t){
+	//
+	var selected = JSON.parse(getSelections());
+	if(selected.length != 1){
+		oTable.showModal('modal', "请选择一条数据进行操作");
+		return;
+	}
+	var id=(JSON.parse(getSelections())[0]["ID"]);
+	console.log(context);
+	window.location.href=context+"/pages/metadata_edit_row.jsp?ParentPKValue="+id+"&pageCode=123";
+}
+
 function copy(t){
 	//辅助元数据功能
 	//获取选中行数据 调用后台

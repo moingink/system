@@ -193,6 +193,16 @@ public class Translate4DESC {
 	}
 
 	/**
+	 * 检查Desc文件是否存在 文件名
+	 */
+	public boolean checkDescExist(String descName) {
+		String sql = "select 1 from bs_filemanage where  allname ='" + descName + "'";
+		List res = BaseDao.getBaseDao().query(sql, "");
+		return !res.isEmpty();
+
+	}
+
+	/**
 	 * 查询desc文件所有状态的数据文件
 	 * descName 文件名称
 	 * status 对应的状态

@@ -2,7 +2,7 @@ buttonJson =[
              {name:'查询',fun:'queryTable(this)',buttonToken:'query'},
              {name:'建表',fun:'tog(this)',buttonToken:'insertWithCache'},
              {name:'表结构设计',fun:'quilkCreate(this)',buttonToken:'quilkCreate'},
-             //{name:'元数据字段',fun:'view(this)',buttonToken:'checkMeta'},
+             {name:'元数据字段',fun:'view(this)',buttonToken:'checkMeta'},
              //{name:'存储过程',fun:'tableProc(this)',buttonToken:'procedure'},
              {name:'提交',fun:'creaeTable(this)',buttonToken:'createTable'},
              
@@ -166,7 +166,9 @@ function copy(t){
         data: {"id":id},
         dataType: "json",
         success: function(data){
+        	queryTable(t);
         	oTable.showModal('modal', data); return;
+        	
         }
     });
 }

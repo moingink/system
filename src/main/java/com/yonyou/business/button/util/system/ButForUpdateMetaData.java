@@ -29,6 +29,7 @@ public class ButForUpdateMetaData extends ButtonAbs {
 		if(childJsonArray!=null){
 			for(int i = 0;i < childJsonArray.length;i++){
 				JSONObject childJson = JSONObject.fromObject(childJsonArray[i]);
+				childJson.put("NULL_FLAG", "0");
 				try {
 					if(childJson.getString("ID").indexOf("add") == -1){
 						SqlWhereEntity where = new SqlWhereEntity();

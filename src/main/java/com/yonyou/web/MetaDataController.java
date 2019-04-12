@@ -1,23 +1,22 @@
 package com.yonyou.web;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSON;
 import com.yonyou.business.MetaDataUtil;
-import com.yonyou.business.button.util.IPublicBusColumn;
 import com.yonyou.util.BussnissException;
-import com.yonyou.util.DBInfoUtil;
 import com.yonyou.util.SerialNumberUtil;
 import com.yonyou.util.SerialNumberUtil.SerialType;
 import com.yonyou.util.jdbc.BaseDao;
@@ -78,7 +77,7 @@ public class MetaDataController extends BaseController {
 		String metadataSql = "select * from cd_metadata where dr=0 and  id ="+id ;
 		String metadatadetailSql = "select * from cd_metadata_detail where dr=0 and  metadata_id ="+id ;
 		List<Map<String, Object>> list = BaseDao.getBaseDao().query(metadataSql, "");
-		List<Map<String, Object>> detaillist = BaseDao.getBaseDao().query(metadatadetailSql, "");
+		List<Map<String, Object>> detailjson = BaseDao.getBaseDao().query(metadatadetailSql, "");
 		list.get(0).remove("ID");
 		
 		//移除id  更改data_code 
@@ -93,12 +92,21 @@ public class MetaDataController extends BaseController {
 		
 		String save_id= dcmsDAO.insertByTransfrom("CD_METADATA", json);
 		//辅助子表字段信息
-		for(int i=0; i<detaillist.size();i++){
-			detaillist.get(i).remove("ID");
-			detaillist.get(i).replace("METADATA_ID", save_id);
+		for(int i=0; i<detailjson.size();i++){
+			detailjson.get(i).remove("ID");
+			detailjson.get(i).replace("METADATA_ID", save_id);
+			Map<String, Object> detaildataMap = detailjson.get(i);
+			for (Entry<String, Object> entry : detaildataMap.entrySet()) {
+				if(StringUtils.isEmpty(entry.getValue())) {
+					entry.setValue("");
+				}
+			}
+			JSONObject detailJson = JSONObject.fromObject(detaildataMap);
+			dcmsDAO.insertByTransfrom("CD_METADATA_DETAIL", detailJson);
 		}
-		JSONObject detailjson = JSONObject.fromObject(detaillist.toString());
-		dcmsDAO.insertByTransfrom("CD_METADATA_DETAIL", detailjson);
+		
+		
+		
 		
 		return JSON.toJSONString("操作成功");
 	}
